@@ -32,7 +32,11 @@ public class Controller {
     public void closeGarageDoor(){
         garage.closeDoor();
     }
-    
+    /**
+     * Method to get the cost of inspection for a specific vehicle
+     * @param vehicle the vehicle to inspect.
+     * @return the cost for inspecting the specified vehicle.
+     */
     public int calculateCostForInspectionBasedOnVehicle(VehicleDTO vehicle){
         SpecifiedInspection[] inspectionsToBeMade = dbm.getInspectionsForVehicle(vehicle);
         this.inspection = new Inspection(vehicle, inspectionsToBeMade);

@@ -19,7 +19,9 @@ public class Garage {
         door.openDoor();
         disp.showNextNumber();
     }
-    
+    /**
+     * Closes the door.
+     */
     public void closeDoor(){
         door.closeDoor();
     }
