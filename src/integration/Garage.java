@@ -33,4 +33,12 @@ public class Garage {
     public void closeDoor(){
         door.closeDoor();
     }
+    
+    /**
+     * Makes a stringrepresentation of the instance.
+     * @return The stringrepresentation of the instance.
+     */
+    public String toString(){
+        return ("The garage has a door and a display. " + door.toString() + ". " + disp.toString() + ".");
+    }
 }

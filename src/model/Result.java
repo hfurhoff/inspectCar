@@ -23,4 +23,8 @@ public class Result {
         }
         this.remarks = new Remark[counter];
     }    
+    
+    public int getNumberOfRemarks(){
+        return remarks.length;
+    }
 }

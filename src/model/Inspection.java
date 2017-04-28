@@ -12,6 +12,7 @@ public class Inspection {
     private final SpecifiedInspection[] inspectionChecklist;
     private final int cost;
     private Result result;
+    private VehicleDTO vehicle;
     
     /**
      * Creates an instance of the object Inspection based on a vehicle and an inspection checklist.
@@ -22,6 +23,7 @@ public class Inspection {
         this.inspectionChecklist = inspectionChecklist;
         this.cost = calculateCost();
         this.result = new Result(this.inspectionChecklist);
+        this.vehicle = vehicle;
     }
     
     /**
@@ -29,7 +31,7 @@ public class Inspection {
      * @return Cost for the inspection.
      */
     public int getCost(){
-        return this.cost;
+        return cost;
     }
     
     /**

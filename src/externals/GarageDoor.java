@@ -28,4 +28,11 @@ public class GarageDoor {
     public void closeDoor(){
         this.isOpen = false;
     }
+    
+    public String toString(){
+        if(isOpen)
+            return "Garagedoor is open";
+        else
+            return "Garagedoor is closed";
+    }
 }

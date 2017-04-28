@@ -15,6 +15,12 @@ public class Controller {
     private final Garage garage;
     private final DatabaseManager dbm;
     private Inspection inspection;
+    private final String[] states = {   "Inspection has not begun.", 
+                                        "Inspection has started.", 
+                                        "Door has closed.", 
+                                        "Registrationnumber has been entered and cost has been returned.", 
+                                        ""};
+    private int currentStateIndex;
     
     /**
      *Creates an instance of the object Controller.
@@ -23,6 +29,7 @@ public class Controller {
         this.garage = new Garage();
         this.dbm = new DatabaseManager();
         this.inspection = null;
+        this.currentStateIndex = 0;
     }
     
     /**
@@ -30,6 +37,7 @@ public class Controller {
      */
     public void startNewInspection(){
         garage.nextCustomer();
+        this.currentStateIndex = 1;
     }
     
     /**
@@ -37,6 +45,7 @@ public class Controller {
      */
     public void closeGarageDoor(){
         garage.closeDoor();
+        this.currentStateIndex = 2;
     }
     /**
      * Method to get the cost of inspection for a specific vehicle
@@ -46,6 +55,11 @@ public class Controller {
     public int calculateCostForInspectionBasedOnVehicle(VehicleDTO vehicle){
         SpecifiedInspection[] inspectionsToBeMade = dbm.getInspectionsForVehicle(vehicle);
         this.inspection = new Inspection(vehicle, inspectionsToBeMade);
+        this.currentStateIndex = 3;
         return this.inspection.getCost();
+    }
+    
+    public String getCurrentState(){
+        return states[currentStateIndex];
     }
 }

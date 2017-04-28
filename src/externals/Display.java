@@ -23,4 +23,12 @@ public class Display {
         this.numberToDisplay++;
         this.numberToDisplay = this.numberToDisplay % maximumNumberToDisplay;
     }
+    
+    /**
+     * Returns the stringrepresentation off the display.
+     * @return The stringrepresentation off the display.
+     */
+    public String toString(){
+        return ("Display is showing number " + numberToDisplay);
+    }
 }

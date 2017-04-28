@@ -26,4 +26,8 @@ public class SpecifiedInspection {
     public int getCost(){
         return cost;
     }
+    
+    public String toString(){
+        return ("Part to inspect and cost: " + partToInspect + ", " + cost);
+    }
 }
