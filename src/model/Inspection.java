@@ -5,7 +5,7 @@ import dto.VehicleDTO;
 import externals.SpecifiedInspection;
 
 /**
- * 
+ * This class handles all things associated with performing the inspection.
  * @author Coyote
  */
 public class Inspection {
