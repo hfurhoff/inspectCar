@@ -7,12 +7,18 @@ import integration.DatabaseManager;
 import integration.Garage;
 import model.Inspection;
 
-
+/**
+ * 
+ * @author Coyote
+ */
 public class Controller {
     private final Garage garage;
     private final DatabaseManager dbm;
     private Inspection inspection;
     
+    /**
+     *Creates an instance of the object Controller.
+     */
     public Controller(){
         this.garage = new Garage();
         this.dbm = new DatabaseManager();

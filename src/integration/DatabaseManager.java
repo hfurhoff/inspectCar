@@ -4,13 +4,18 @@ package integration;
 import dto.VehicleDTO;
 import externals.SpecifiedInspection;
 
-
+/**
+ * Responsible for making calls to the database.
+ * @author Coyote
+ */
 public class DatabaseManager {
     
-    
+    /**
+     * Creates an instance of a dummy databasemanager.
+     */
     public DatabaseManager(){
-        
     }
+    
     /**
      * Imitation of a databasecall to get an array of specified inspections to be performed.
      * @param vehicle The specified vehicle to inspect.
