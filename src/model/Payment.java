@@ -13,13 +13,18 @@ import integration.Printer;
  */
 public class Payment {
     
-    private boolean paymentApproved;
+    private final CreditCardDTO creditCard;
+    private final int cost;
+    private final PaymentAuthorizer bank;
+    private final Date paymentDate;
+    private final boolean paymentApproved;
+    private final Receipt receiptForCurrentTransaction;
     
     /**
      * This is the constructor for the payment. Since a payment is an event that 
-     * passes quickly this constructor does not save the parameters as variables 
-     * but only uses these in calls to other objects to create the event of a 
-     * payment. 
+     * passes quickly this constructor not only saves the parameters as 
+     * variables but also uses these in calls to other objects to create the 
+     * event of a payment. 
      * @param creditCard The creditcard that will try and fund the payment.
      * @param cost The cost of the inspction that the payment is a compensation 
      * for.
@@ -30,9 +35,12 @@ public class Payment {
      */
     public Payment(CreditCardDTO creditCard, int cost, PaymentAuthorizer bank, 
             Printer printer) {
-        Date paymentDate = createPaymentDate();
-        sendPaymentRequestToAuthorizer(bank, creditCard, cost);
-        Receipt receiptForCurrentTransaction = createReceipt(cost, paymentDate);
+        this.creditCard = creditCard;
+        this.cost = cost;
+        this.bank = bank;
+        paymentDate = createPaymentDate();
+        paymentApproved = sendPaymentRequestToAuthorizer();
+        receiptForCurrentTransaction = createReceipt();
         printer.printReceipt(receiptForCurrentTransaction);
     }
     
@@ -41,33 +49,23 @@ public class Payment {
      * @return The date of the payment
      */
     private Date createPaymentDate() {
-        Date paymentDate = new Date();
-        return paymentDate;
+        return new Date();
     }
 
     /**
      * Sends a paymentrequest for the cost with information about the creditcard 
-     * to the specified payment authorizer
-     * @param bank The payment authorizer that the request will be sent to.
-     * @param creditCard The credit card from where the money will be drawn.
-     * @param cost The amount that needs to be on the account for the request to 
-     * be approved.
+     * to the payment authorizer.
      */
-    private void sendPaymentRequestToAuthorizer(PaymentAuthorizer bank, 
-            CreditCardDTO creditCard, int cost) {
-        this.paymentApproved = bank.authorizePayment(creditCard, cost);
+    private boolean sendPaymentRequestToAuthorizer() {
+        return bank.authorizePayment(creditCard, cost);
     }
 
     /**
      * Creates a receipt for the current payment
-     * @param cost The cost that will be compensated with the payment
-     * @param paymentDate The date when the payment was made
      * @return Returns the receipt proving the payment.
      */
-    private Receipt createReceipt(int cost, Date paymentDate) {
-        Receipt receiptForCurrentTransaction = new Receipt(cost, paymentDate, 
-                paymentApproved);
-        return receiptForCurrentTransaction;
+    private Receipt createReceipt() {
+        return new Receipt(this);
     }
 
     /**
@@ -79,5 +77,20 @@ public class Payment {
     public boolean getApproved() {
         return paymentApproved;
     }
-    
+
+    /**
+     * A getter for the cost that the payment is a compensation for.
+     * @return The cost that the payment is a compensation for.
+     */
+    public int getCost() {
+        return cost;
+    }
+
+    /**
+     * A getter for the date that the payment was made.
+     * @return The date the payment was made.
+     */
+    public Date getPaymentDate() {
+        return paymentDate;
+    }
 }
