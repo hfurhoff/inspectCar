@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inspectcar;
+package view;
 
 /**
- * 
+ * This class is a placeholder for the entire view.
  * @author Coyote
  */
-public class InspectCar {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class View {
     
 }
