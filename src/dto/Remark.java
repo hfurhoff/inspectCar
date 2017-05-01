@@ -28,8 +28,8 @@ public class Remark {
     }
     
     /**
-     * 
-     * @return 
+     * Returns the remark entered by an inspector.
+     * @return The remark entered by an inspector.
      */
     public String getRemark(){
         return remark;

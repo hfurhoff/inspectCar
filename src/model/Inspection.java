@@ -83,7 +83,7 @@ public class Inspection {
      * @param printer The printer to be used when printing the results.
      */
     public void finishedWithInspection(DatabaseManager dbm, Printer printer) {
-        dbm.storeResult(vehicle, result);
+        dbm.storeResult(vehicle, result, inspectionChecklist);
         String printableVersionOfTheResult = result.getTextToPrint(inspectionChecklist, vehicle);
         printer.print(printableVersionOfTheResult);
     }

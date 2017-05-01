@@ -12,10 +12,18 @@ import model.Result;
  */
 public class DatabaseManager {
     
+    private final SpecifiedInspection[] dummyInspectionsToBeMade;
+    private StoredResult storedResults;
+    
     /**
      * Creates an instance of a dummy databasemanager.
      */
     public DatabaseManager(){
+        dummyInspectionsToBeMade = new SpecifiedInspection[4];
+        dummyInspectionsToBeMade[0] = (new SpecifiedInspection("Brakes", 250));
+        dummyInspectionsToBeMade[1] = (new SpecifiedInspection("Steering", 200));
+        dummyInspectionsToBeMade[2] = (new SpecifiedInspection("Exhaust levels", 300));
+        dummyInspectionsToBeMade[3] = (new SpecifiedInspection("Suspension", 150));
     }
     
     /**
@@ -24,10 +32,6 @@ public class DatabaseManager {
      * @return An array of specified inspections to be made upon the specified vehicle.
      */
     public SpecifiedInspection[] getInspectionsForVehicle(VehicleDTO vehicle){
-        SpecifiedInspection[] dummyInspectionsToBeMade = {  (new SpecifiedInspection("Brakes", 250)),
-                                                            (new SpecifiedInspection("Steering", 200)),
-                                                            (new SpecifiedInspection("Exhaust levels", 300)),
-                                                            (new SpecifiedInspection("Suspension", 150))};
         return dummyInspectionsToBeMade;
     }
 
@@ -38,5 +42,15 @@ public class DatabaseManager {
      */
     public void storeResult(VehicleDTO vehicle, Result result) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Stores the result of an inspection.
+     * @param vehicle The vehicle that was inspected.
+     * @param result The result of the inspection.
+     * @param inspectionChecklist The inspections that was performed.
+     */
+    public void storeResult(VehicleDTO vehicle, Result result, SpecifiedInspection[] inspectionChecklist) {
+        
     }
 }
