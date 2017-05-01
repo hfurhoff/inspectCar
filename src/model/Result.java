@@ -26,7 +26,7 @@ public class Result {
         this.remarks = new Remark[counter];
         latestPerformedInspection = -1;
     }    
-
+    
     /**
      * Updates the result with the remark for the latest performed specified inspection.
      * @param remark The remark for the latest performed specified inspection.
@@ -56,5 +56,13 @@ public class Result {
         }
         
         return printableResult;
+    }
+
+    /**
+     * Returns the number of remarks.
+     * @return The number of remarks.
+     */
+    int getNumberOfRemarks() {
+        return remarks.length;
     }
 }
