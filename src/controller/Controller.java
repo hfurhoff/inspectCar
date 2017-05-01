@@ -86,6 +86,22 @@ public class Controller {
     }
     
     /**
+     * This method is a way for the view to ask if there are more inspections to come.
+     * @return A boolean answer to the statement "There are more inspections to be performed".
+     */
+    public boolean hasMoreInspections(){
+        return inspection.hasMoreInspections();
+    }
+    
+    /**
+     * Provides the next specified inspection to be performed.
+     * @return The next inspection to be performed by the inspector.
+     */
+    public SpecifiedInspection getNextSpecifiedInspection(){
+        return inspection.getNextSpecifiedInspection();
+    }
+    
+    /**
      * Since we wont make the view i will use state transcripts instead to track the progress of the program.
      * @return The current state of which the program is in.
      */

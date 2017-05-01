@@ -10,6 +10,7 @@ import externals.SpecifiedInspection;
  */
 public class Inspection {
     private final SpecifiedInspection[] inspectionChecklist;
+    private int nextSpecifiedInspection;
     private final int cost;
     private Result result;
     private VehicleDTO vehicle;
@@ -21,6 +22,7 @@ public class Inspection {
      */
     public Inspection(VehicleDTO vehicle, SpecifiedInspection[] inspectionChecklist){
         this.inspectionChecklist = inspectionChecklist;
+        this.nextSpecifiedInspection = 0;
         this.cost = calculateCost();
         this.result = new Result(this.inspectionChecklist);
         this.vehicle = vehicle;
@@ -44,6 +46,24 @@ public class Inspection {
             totalCost += insp.getCost();
         }
         return totalCost;
+    }
+
+    /**
+     * This method is a way for the controller to ask if there are more inspections to come.
+     * @return A boolean answer to the statement "There are more inspections to be performed".
+     */
+    public boolean hasMoreInspections() {
+        return nextSpecifiedInspection < inspectionChecklist.length;
+    }
+
+    /**
+     * Provides the next specified inspection to be performed.
+     * @return The next inspection to be performed by the inspector.
+     */
+    public SpecifiedInspection getNextSpecifiedInspection() {
+        SpecifiedInspection nextInspectionToBePerformed = inspectionChecklist[nextSpecifiedInspection];
+        nextSpecifiedInspection++;
+        return nextInspectionToBePerformed;
     }
     
 }
