@@ -2,7 +2,7 @@
 package dto;
 
 /**
- * 
+ * A data transfer class for a vehicle
  * @author Coyote
  */
 public class VehicleDTO {

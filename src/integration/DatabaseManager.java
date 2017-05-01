@@ -1,9 +1,9 @@
 
 package integration;
 
-import dto.Remark;
 import dto.VehicleDTO;
 import externals.SpecifiedInspection;
+import externals.StoredResult;
 import model.Result;
 
 /**
@@ -39,18 +39,9 @@ public class DatabaseManager {
      * Stores the result of an inspection.
      * @param vehicle The vehicle that was inspected.
      * @param result The result of the inspection.
+     * @param doneInspections The inspections that was performed.
      */
-    public void storeResult(VehicleDTO vehicle, Result result) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Stores the result of an inspection.
-     * @param vehicle The vehicle that was inspected.
-     * @param result The result of the inspection.
-     * @param inspectionChecklist The inspections that was performed.
-     */
-    public void storeResult(VehicleDTO vehicle, Result result, SpecifiedInspection[] inspectionChecklist) {
-        
+    public void storeResult(VehicleDTO vehicle, Result result, SpecifiedInspection[] doneInspections) {
+        storedResults = new StoredResult(vehicle, result, doneInspections);
     }
 }
