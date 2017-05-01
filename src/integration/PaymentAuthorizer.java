@@ -1,23 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package integration;
 
 import dto.CreditCardDTO;
+import model.Payment;
 
 /**
- *
+ * This class is responsible for approving creditcardpayments.
  * @author Coyote
  */
 public class PaymentAuthorizer {
 
+    /**
+     * Since this is a dummy class the constructor is empty.
+     */
     public PaymentAuthorizer(){
         
     }
 
+    /**
+     * A dummy assesment of the creditcard.
+     * @param creditCard The creditcard to be assest.
+     * @param cost The cost that the credit card needs to have.
+     * @return Returns true if the cost is lower then the reditcard balance.
+     */
     public boolean authorizePayment(CreditCardDTO creditCard, int cost) {
-        return true;
+        boolean approved = false;
+        int creditcardBalance = 1000;
+        if(cost < creditcardBalance)
+            approved = true;
+        return approved;
     }
 }
