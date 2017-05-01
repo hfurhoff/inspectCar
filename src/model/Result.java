@@ -43,6 +43,18 @@ public class Result {
      * @return 
      */
     String getTextToPrint(SpecifiedInspection[] inspectionChecklist, VehicleDTO vehicle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String printableResult = ("The vehicle with registration number " + vehicle.getRegNo() + " was inspected. This is the result. \n");
+        for(int i = 0; i < remarks.length; i++){
+            printableResult = printableResult.concat(inspectionChecklist[i].getPartToInspect());
+            printableResult = printableResult.concat(" was inspected. The vehicle ");
+            if(remarks[i].getPassed())
+                 printableResult = printableResult.concat("passed. ");
+            else
+                 printableResult = printableResult.concat("failed ");
+            printableResult = printableResult.concat(remarks[i].getRemark() + "\n");
+        }
+        
+        return printableResult;
     }
 }

@@ -18,4 +18,20 @@ public class Remark {
         this.remark = remark;
         this.passed = passed;
     }
+
+    /**
+     * Returns the boolean result a specific inspection.
+     * @return The boolean result a specific inspection.
+     */
+    public boolean getPassed() {
+        return passed;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public String getRemark(){
+        return remark;
+    }
 }

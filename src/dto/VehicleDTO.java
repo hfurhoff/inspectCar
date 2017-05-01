@@ -14,4 +14,12 @@ public class VehicleDTO {
     public VehicleDTO(String regNo){
         this.regNumber = regNo;
     }
+
+    /**
+     * Returns the vehicles registration number.
+     * @return The vehicles registration number.
+     */
+    public String getRegNo() {
+        return regNumber;
+    }
 }
