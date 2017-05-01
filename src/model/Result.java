@@ -2,6 +2,7 @@
 package model;
 
 import dto.Remark;
+import dto.VehicleDTO;
 import externals.SpecifiedInspection;
 
 /**
@@ -11,6 +12,7 @@ import externals.SpecifiedInspection;
 public class Result {
     
     private Remark[] remarks;
+    private int latestPerformedInspection;
     
     /**
      * Creates a result object where the inspector later on can add his or hers remarks for each specified inspection.
@@ -22,9 +24,25 @@ public class Result {
             counter++;
         }
         this.remarks = new Remark[counter];
+        latestPerformedInspection = -1;
     }    
-    
-    public int getNumberOfRemarks(){
-        return remarks.length;
+
+    /**
+     * Updates the result with the remark for the latest performed specified inspection.
+     * @param remark The remark for the latest performed specified inspection.
+     */
+    void addRemark(Remark remark) {
+        latestPerformedInspection++;
+        remarks[latestPerformedInspection] = remark;
+    }
+
+    /**
+     * Creates a printable version of itself.
+     * @param inspectionChecklist The inspections that was made.
+     * @param vehicle The vehicle that was inspected.
+     * @return 
+     */
+    String getTextToPrint(SpecifiedInspection[] inspectionChecklist, VehicleDTO vehicle) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

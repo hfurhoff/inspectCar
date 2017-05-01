@@ -1,8 +1,11 @@
 
 package model;
 
+import dto.Remark;
 import dto.VehicleDTO;
 import externals.SpecifiedInspection;
+import integration.DatabaseManager;
+import integration.Printer;
 
 /**
  * This class handles all things associated with performing the inspection.
@@ -13,7 +16,7 @@ public class Inspection {
     private int nextSpecifiedInspection;
     private final int cost;
     private Result result;
-    private VehicleDTO vehicle;
+    private final VehicleDTO vehicle;
     
     /**
      * Creates an instance of the object Inspection based on a vehicle and an inspection checklist.
@@ -64,6 +67,25 @@ public class Inspection {
         SpecifiedInspection nextInspectionToBePerformed = inspectionChecklist[nextSpecifiedInspection];
         nextSpecifiedInspection++;
         return nextInspectionToBePerformed;
+    }
+
+    /**
+     * Updates the result with the remark for the latest performed specified inspection.
+     * @param remark The remark for the latest performed specified inspection.
+     */
+    public void addRemark(Remark remark) {
+        result.addRemark(remark);
+    }
+
+    /**
+     * Ends the inspection, stores and prints the result.
+     * @param dbm The databasemanager to be used when storing the results.
+     * @param printer The printer to be used when printing the results.
+     */
+    public void finishedWithInspection(DatabaseManager dbm, Printer printer) {
+        dbm.storeResult(vehicle, result);
+        String printableVersionOfTheResult = result.getTextToPrint(inspectionChecklist, vehicle);
+        printer.print(printableVersionOfTheResult);
     }
     
 }

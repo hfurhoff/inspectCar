@@ -1,8 +1,10 @@
 
 package integration;
 
+import dto.Remark;
 import dto.VehicleDTO;
 import externals.SpecifiedInspection;
+import model.Result;
 
 /**
  * Responsible for making calls to the database.
@@ -29,5 +31,12 @@ public class DatabaseManager {
         return dummyInspectionsToBeMade;
     }
 
-
+    /**
+     * Stores the result of an inspection.
+     * @param vehicle The vehicle that was inspected.
+     * @param result The result of the inspection.
+     */
+    public void storeResult(VehicleDTO vehicle, Result result) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

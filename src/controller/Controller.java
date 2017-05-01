@@ -2,6 +2,7 @@
 package controller;
 
 import dto.CreditCardDTO;
+import dto.Remark;
 import dto.VehicleDTO;
 import externals.SpecifiedInspection;
 import integration.DatabaseManager;
@@ -99,6 +100,18 @@ public class Controller {
      */
     public SpecifiedInspection getNextSpecifiedInspection(){
         return inspection.getNextSpecifiedInspection();
+    }
+    
+    /**
+     * Adds the remark entered by the inspector and prints the finished result if there are no more inspections to be made.
+     * @param remark The remark for the latest specified inspection performed.
+     */
+    public void enterRemark(Remark remark){
+        inspection.addRemark(remark);
+        if(! (inspection.hasMoreInspections())){
+            inspection.finishedWithInspection(dbm, printer);
+            inspection = null;
+        }
     }
     
     /**

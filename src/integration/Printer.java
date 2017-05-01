@@ -5,7 +5,6 @@
  */
 package integration;
 
-import dto.Receipt;
 
 /**
  * This class is responsible for connecting to the external system that is the 
@@ -15,18 +14,10 @@ import dto.Receipt;
 public class Printer {
 
     /**
-     * Gets the text to print from the receipt and sends a print command to the printer with that text.
-     * @param receiptForCurrentTransaction The receipt to be printed.
-     */
-    public void printReceipt(Receipt receiptForCurrentTransaction) {
-        print(receiptForCurrentTransaction.getTextToPrint());
-    }
-
-    /**
      * Prints the specified text.
      * @param textToPrint Text to be printed.
      */
-    private void print(String textToPrint) {
+    public void print(String textToPrint) {
     }
 
 

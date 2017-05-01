@@ -41,7 +41,7 @@ public class Payment {
         paymentDate = createPaymentDate();
         paymentApproved = sendPaymentRequestToAuthorizer();
         receiptForCurrentTransaction = createReceipt();
-        printer.printReceipt(receiptForCurrentTransaction);
+        printer.print(receiptForCurrentTransaction.getTextToPrint());
     }
     
     /**
