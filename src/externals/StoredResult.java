@@ -30,6 +30,7 @@ public class StoredResult {
         this.doneInspections = doneInspections;
     }
 
+    @Override
     public boolean equals(Object obj) {
         boolean theObjectsAreEqual = true;
         theObjectsAreEqual &= (obj instanceof StoredResult);
@@ -44,11 +45,14 @@ public class StoredResult {
     }
 
     private VehicleDTO getVehicle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return vehicle;
     }
 
     private Object getResult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return result;
     }
     
+    private SpecifiedInspection[] getDoneInspections() {
+        return doneInspections;
+    }
 }

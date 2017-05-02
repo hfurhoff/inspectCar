@@ -11,7 +11,7 @@ import externals.SpecifiedInspection;
  */
 public class Result {
     
-    private Remark[] remarks;
+    private final Remark[] remarks;
     private int latestPerformedInspection;
     
     /**
@@ -64,5 +64,38 @@ public class Result {
      */
     int getNumberOfRemarks() {
         return remarks.length;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        boolean theObjectsAreEqual = true;
+        theObjectsAreEqual &= (obj instanceof Result);
+        if(theObjectsAreEqual == false)
+            return theObjectsAreEqual;
+        
+        if(obj == null){
+            theObjectsAreEqual = false;
+            return theObjectsAreEqual;
+        }
+        
+        Result otherResult = (Result) obj;
+        theObjectsAreEqual &= this.latestPerformedInspection == otherResult.getLatestPerformedInspection();
+        theObjectsAreEqual &= this.getNumberOfRemarks() == otherResult.getNumberOfRemarks();
+        if(theObjectsAreEqual == false)
+            return theObjectsAreEqual;
+        
+        for(int i = 0; i < this.getNumberOfRemarks(); i++){
+            theObjectsAreEqual &= remarks[i].equals(otherResult.getRemark(i));
+        }
+        
+        return theObjectsAreEqual;
+    }
+
+    private int getLatestPerformedInspection() {
+        return this.latestPerformedInspection;
+    }
+
+    private Object getRemark(int i) {
+        return remarks[i];
     }
 }

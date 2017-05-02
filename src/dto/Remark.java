@@ -34,4 +34,23 @@ public class Remark {
     public String getRemark(){
         return remark;
     }
+    
+    @Override
+    public boolean equals(Object obj){
+        boolean theObjectsAreEqual = true;
+        theObjectsAreEqual &= (obj instanceof Remark);
+        if(theObjectsAreEqual == false){
+             return theObjectsAreEqual;
+        }
+
+        if(obj == null){
+            theObjectsAreEqual = false;
+            return theObjectsAreEqual;
+        }
+        
+        Remark otherRemark = (Remark) obj;
+        theObjectsAreEqual &= remark.equalsIgnoreCase(otherRemark.getRemark());
+        theObjectsAreEqual &= passed == otherRemark.getPassed();
+        return theObjectsAreEqual;
+    }
 }

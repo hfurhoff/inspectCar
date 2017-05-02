@@ -22,4 +22,20 @@ public class VehicleDTO {
     public String getRegNo() {
         return regNumber;
     }
+    
+    public boolean equals(VehicleDTO obj){
+        boolean theObjectsAreEqual = true;
+        theObjectsAreEqual &= (obj instanceof VehicleDTO);
+        if(theObjectsAreEqual == false)
+            return theObjectsAreEqual;
+        
+        if(obj == null){
+            theObjectsAreEqual = false;
+            return theObjectsAreEqual;
+        }
+        
+        VehicleDTO otherVehicle = (VehicleDTO) obj;
+        theObjectsAreEqual &= regNumber.equalsIgnoreCase(otherVehicle.getRegNo());
+        return theObjectsAreEqual;
+    }
 }

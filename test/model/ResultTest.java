@@ -5,6 +5,8 @@
  */
 package model;
 
+import dto.Remark;
+import dto.VehicleDTO;
 import externals.SpecifiedInspection;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,6 +22,14 @@ import static org.junit.Assert.*;
 public class ResultTest {
     
     public ResultTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
     }
     
     
@@ -41,6 +51,41 @@ public class ResultTest {
         int expectedRes = testArray.length;
         int result = instance.getNumberOfRemarks();
         assertEquals("Result was not initialized correctly", expectedRes, result);
+    }
+
+    /**
+     * Test of addRemark method, of class Result.
+     */
+    @Test
+    public void testAddRemark() {
+        Remark remark = null;
+        Result instance = null;
+        instance.addRemark(remark);
+    }
+
+    /**
+     * Test of getTextToPrint method, of class Result.
+     */
+    @Test
+    public void testGetTextToPrint() {
+        SpecifiedInspection[] inspectionChecklist = null;
+        VehicleDTO vehicle = null;
+        Result instance = null;
+        String expResult = "";
+        String result = instance.getTextToPrint(inspectionChecklist, vehicle);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of equals method, of class Result.
+     */
+    @Test
+    public void testEquals() {
+        Object obj = null;
+        Result instance = null;
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
     }
     
 }
