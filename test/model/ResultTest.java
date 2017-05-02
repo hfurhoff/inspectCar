@@ -58,9 +58,22 @@ public class ResultTest {
      */
     @Test
     public void testAddRemark() {
-        Remark remark = null;
-        Result instance = null;
+        Remark remark = new Remark("Passed", true);
+        SpecifiedInspection[] testArray = { new SpecifiedInspection("a", 1), 
+                                            new SpecifiedInspection("b", 2), 
+                                            new SpecifiedInspection("c", 3), 
+                                            new SpecifiedInspection("d", 4)};
+        Result instance = new Result(testArray);
         instance.addRemark(remark);
+        
+        SpecifiedInspection[] otherTestArray = { new SpecifiedInspection("a", 1), 
+                                            new SpecifiedInspection("b", 2), 
+                                            new SpecifiedInspection("c", 3), 
+                                            new SpecifiedInspection("d", 4)};
+        Result otherInstance = new Result(testArray);
+        boolean expectedRes = false;
+        boolean result = instance.equals(otherInstance);
+        assertEquals("No remark was added.", expectedRes, result);
     }
 
     /**
@@ -68,10 +81,12 @@ public class ResultTest {
      */
     @Test
     public void testGetTextToPrint() {
-        SpecifiedInspection[] inspectionChecklist = null;
-        VehicleDTO vehicle = null;
-        Result instance = null;
-        String expResult = "";
+        SpecifiedInspection[] inspectionChecklist = {new SpecifiedInspection("a", 1)};
+        VehicleDTO vehicle = new VehicleDTO("123ABC");
+        Remark remark = new Remark("Passed", true);
+        Result instance = new Result(inspectionChecklist);
+        instance.addRemark(remark);
+        String expResult = "The vehicle with registration number 123ABC was inspected. This is the result. \n";
         String result = instance.getTextToPrint(inspectionChecklist, vehicle);
         assertEquals(expResult, result);
     }

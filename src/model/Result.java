@@ -80,12 +80,12 @@ public class Result {
         
         Result otherResult = (Result) obj;
         theObjectsAreEqual &= this.latestPerformedInspection == otherResult.getLatestPerformedInspection();
-        theObjectsAreEqual &= this.getNumberOfRemarks() == otherResult.getNumberOfRemarks();
+        theObjectsAreEqual &= (this.getNumberOfRemarks() == otherResult.getNumberOfRemarks());
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
         for(int i = 0; i < this.getNumberOfRemarks(); i++){
-            theObjectsAreEqual &= remarks[i].equals(otherResult.getRemark(i));
+            theObjectsAreEqual &= this.remarks[i].equals(otherResult.getRemark(i));
         }
         
         return theObjectsAreEqual;
@@ -95,7 +95,7 @@ public class Result {
         return this.latestPerformedInspection;
     }
 
-    private Object getRemark(int i) {
+    private Remark getRemark(int i) {
         return remarks[i];
     }
 }

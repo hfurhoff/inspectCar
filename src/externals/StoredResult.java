@@ -37,6 +37,11 @@ public class StoredResult {
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
+        if(obj == null){
+            theObjectsAreEqual = false;
+            return theObjectsAreEqual;
+        }
+        
         StoredResult otherStoredResult = (StoredResult) obj;
         theObjectsAreEqual &= vehicle.equals(otherStoredResult.getVehicle());
         theObjectsAreEqual &= result.equals(otherStoredResult.getResult());
