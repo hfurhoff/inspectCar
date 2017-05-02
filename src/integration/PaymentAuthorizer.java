@@ -2,7 +2,6 @@
 package integration;
 
 import dto.CreditCardDTO;
-import model.Payment;
 
 /**
  * This class is responsible for approving creditcardpayments.

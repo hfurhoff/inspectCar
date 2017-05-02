@@ -51,7 +51,7 @@ public class Result {
             if(remarks[i].getPassed())
                  printableResult = printableResult.concat("passed. ");
             else
-                 printableResult = printableResult.concat("failed ");
+                 printableResult = printableResult.concat("failed. ");
             printableResult = printableResult.concat(remarks[i].getRemark() + "\n");
         }
         

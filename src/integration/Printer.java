@@ -18,6 +18,7 @@ public class Printer {
      * @param textToPrint Text to be printed.
      */
     public void print(String textToPrint) {
+        System.out.println(textToPrint);
     }
 
 

@@ -3,6 +3,7 @@ package controller;
 
 import dto.CreditCardDTO;
 import dto.Remark;
+import stateHandler.State;
 import dto.VehicleDTO;
 import externals.SpecifiedInspection;
 import integration.DatabaseManager;
@@ -21,15 +22,8 @@ public class Controller {
     private final DatabaseManager dbm;
     private final PaymentAuthorizer bank;
     private final Printer printer;
-    
     private Inspection inspection;
-    private String[] states = { "Inspection has not begun.", 
-                                "Inspection has started.", 
-                                "Door has closed.", 
-                                "Registrationnumber has been entered and cost has been returned.", 
-                                "", 
-                                ""};
-    private int currentStateIndex;
+    private State currentState;
     
     /**
      *Creates an instance of the object Controller.
@@ -40,7 +34,7 @@ public class Controller {
         this.bank = new PaymentAuthorizer();
         this.printer = new Printer();
         this.inspection = null;
-        this.currentStateIndex = 0;
+        this.currentState = State.NO_INSPECTION_HAS_BEGUN;
     }
     
     /**
@@ -48,7 +42,7 @@ public class Controller {
      */
     public void startNewInspection(){
         garage.nextCustomer();
-        this.currentStateIndex = 1;
+        this.currentState = State.AN_INSPECTION_HAS_STARTED;
     }
     
     /**
@@ -56,17 +50,19 @@ public class Controller {
      */
     public void closeGarageDoor(){
         garage.closeDoor();
-        this.currentStateIndex = 2;
+        this.currentState = State.DOOR_HAS_CLOSED;
     }
+    
     /**
-     * Method to get the cost of inspection for a specific vehicle
-     * @param vehicle the vehicle to inspect.
+     * Method to get the cost of inspection for a vehicle specified by a registration number.
+     * @param regNo the registration number for the vehicle to inspect.
      * @return the cost for inspecting the specified vehicle.
      */
-    public int calculateCostForInspectionBasedOnVehicle(VehicleDTO vehicle){
+    public int calculateCostForInspectionBasedOnVehicle(String regNo) {
+        VehicleDTO vehicle = new VehicleDTO(regNo);
         SpecifiedInspection[] inspectionsToBeMade = dbm.getInspectionsForVehicle(vehicle);
         this.inspection = new Inspection(vehicle, inspectionsToBeMade);
-        this.currentStateIndex = 3;
+        this.currentState = State.REGISTRATION_NUMBER_HAS_BEEN_ENTERED_AND_COST_HAS_BEEN_RETURNED;
         return this.inspection.getCost();
     }
     
@@ -77,12 +73,11 @@ public class Controller {
     public void pay(CreditCardDTO creditCard){
         Payment currentPayment = new Payment(creditCard, inspection.getCost(), bank, printer);
         boolean approvedPayment = currentPayment.getApproved();
-        this.currentStateIndex = 4;
         if(approvedPayment){
-            states[currentStateIndex] = "Customer has payed with a creditcard and the payment was approved";
+            this.currentState = State.CUSTOMER_HAS_PAYED_WITH_AN_APPROVED_CREDITCARD;
         }
         else{
-            states[currentStateIndex] = "Customer has tried to pay with a creditcard but the payment was not approved";
+            this.currentState = State.CUSTOMER_HAS_TRIED_TO_PAY_WITH_A_NONAPPROVED_CREDITCARD;
         }
     }
     
@@ -91,6 +86,10 @@ public class Controller {
      * @return A boolean answer to the statement "There are more inspections to be performed".
      */
     public boolean hasMoreInspections(){
+        if(inspection.hasMoreInspections())
+            this.currentState = State.THERE_ARE_MORE_INSPECTIONS_TO_BE_MADE;
+        else
+            this.currentState = State.THERE_ARE_NO_MORE_INSPECTIONS;
         return inspection.hasMoreInspections();
     }
     
@@ -99,6 +98,7 @@ public class Controller {
      * @return The next inspection to be performed by the inspector.
      */
     public SpecifiedInspection getNextSpecifiedInspection(){
+        this.currentState = State.INSPECTOR_GOT_ANOTHER_INSPECTION;
         return inspection.getNextSpecifiedInspection();
     }
     
@@ -108,17 +108,19 @@ public class Controller {
      */
     public void enterRemark(Remark remark){
         inspection.addRemark(remark);
+        this.currentState = State.INSPECTOR_ENTERED_A_REMARK;
         if(! (inspection.hasMoreInspections())){
             inspection.finishedWithInspection(dbm, printer);
             inspection = null;
+            this.currentState = State.THE_INSPECTION_IS_FINISHED;
         }
     }
     
     /**
-     * Since we wont make the view i will use state transcripts instead to track the progress of the program.
+     * Since we wont make the view i will use states instead to track the progress of the program.
      * @return The current state of which the program is in.
      */
-    public String getCurrentState(){
-        return states[currentStateIndex];
+    public State getCurrentState(){
+        return currentState;
     }
 }
