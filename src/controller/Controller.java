@@ -111,7 +111,6 @@ public class Controller {
         this.currentState = State.INSPECTOR_ENTERED_A_REMARK;
         if(! (inspection.hasMoreInspections())){
             inspection.finishedWithInspection(dbm, printer);
-            inspection = null;
             this.currentState = State.THE_INSPECTION_IS_FINISHED;
         }
     }
