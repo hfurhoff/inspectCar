@@ -7,6 +7,7 @@ package externals;
 
 import dto.Remark;
 import dto.VehicleDTO;
+import model.Inspection;
 import model.Result;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -80,13 +81,14 @@ public class StoredResultTest {
      */
     @Test
     public void testEqualsWhenOtherObjectIsSameInstanceOfStoredResult() {
+        Remark remark = new Remark("Passed.", true);
         VehicleDTO vehicle = new VehicleDTO("123ABC");
         SpecifiedInspection[] specInsp = {new SpecifiedInspection("Brakes", 666)};
-        Result resultOfInspection = new Result(specInsp);
+        Inspection inspection = new Inspection(vehicle, specInsp);
         StoredResult obj = new StoredResult(vehicle, resultOfInspection, specInsp);
         boolean expResult = true;
         boolean result = instance.equals(obj);
-        assertEquals("Method returned that the objects were equal.", expResult, result);
+        assertEquals("Method returned that the objects were not equal.", expResult, result);
     }
     
 }

@@ -74,6 +74,6 @@ public class VehicleDTOTest {
         VehicleDTO obj = new VehicleDTO("123ABC");
         boolean expResult = true;
         boolean result = instance.equals(obj);
-        assertEquals("Method returned that the objects were equal.", expResult, result);
+        assertEquals("Method returned that the objects were not equal.", expResult, result);
     }
 }

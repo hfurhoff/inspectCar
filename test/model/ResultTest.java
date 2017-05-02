@@ -9,9 +9,7 @@ import dto.Remark;
 import dto.VehicleDTO;
 import externals.SpecifiedInspection;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,30 +22,24 @@ public class ResultTest {
     public ResultTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-    
+    SpecifiedInspection[] testArray;
+    Result instance;
     
     @Before
     public void setUp() {
+        SpecifiedInspection[] specInsp = { (new SpecifiedInspection("a", 1))};
+        this.testArray = specInsp;
+        instance = new Result(testArray);
     }
     
     @After
     public void tearDown() {
+        testArray = null;
+        instance = null;
     }
 
     @Test
     public void testThatResultIsInitializedCorrectly() {
-        SpecifiedInspection[] testArray = { new SpecifiedInspection("a", 1), 
-                                            new SpecifiedInspection("b", 2), 
-                                            new SpecifiedInspection("c", 3), 
-                                            new SpecifiedInspection("d", 4)};
-        Result instance = new Result(testArray);
         int expectedRes = testArray.length;
         int result = instance.getNumberOfRemarks();
         assertEquals("Result was not initialized correctly", expectedRes, result);
@@ -59,18 +51,9 @@ public class ResultTest {
     @Test
     public void testAddRemark() {
         Remark remark = new Remark("Passed", true);
-        SpecifiedInspection[] testArray = { new SpecifiedInspection("a", 1), 
-                                            new SpecifiedInspection("b", 2), 
-                                            new SpecifiedInspection("c", 3), 
-                                            new SpecifiedInspection("d", 4)};
-        Result instance = new Result(testArray);
-        instance.addRemark(remark);
-        
-        SpecifiedInspection[] otherTestArray = { new SpecifiedInspection("a", 1), 
-                                            new SpecifiedInspection("b", 2), 
-                                            new SpecifiedInspection("c", 3), 
-                                            new SpecifiedInspection("d", 4)};
         Result otherInstance = new Result(testArray);
+        otherInstance.addRemark(remark);
+        
         boolean expectedRes = false;
         boolean result = instance.equals(otherInstance);
         assertEquals("No remark was added.", expectedRes, result);
@@ -84,23 +67,60 @@ public class ResultTest {
         SpecifiedInspection[] inspectionChecklist = {new SpecifiedInspection("a", 1)};
         VehicleDTO vehicle = new VehicleDTO("123ABC");
         Remark remark = new Remark("Passed", true);
-        Result instance = new Result(inspectionChecklist);
-        instance.addRemark(remark);
-        String expResult = "The vehicle with registration number 123ABC was inspected. This is the result. \n";
-        String result = instance.getTextToPrint(inspectionChecklist, vehicle);
-        assertEquals(expResult, result);
+        Result newInstance = new Result(inspectionChecklist);
+        newInstance.addRemark(remark);
+        String expResult = "The vehicle with registration number 123ABC was inspected. This is the result. \na was inspected. The vehicle passed. Passed\n";
+        String result = newInstance.getTextToPrint(inspectionChecklist, vehicle);
+        assertEquals("The text provided did not match the text expected.",expResult, result);
     }
 
     /**
      * Test of equals method, of class Result.
      */
     @Test
-    public void testEquals() {
-        Object obj = null;
-        Result instance = null;
+    public void testEqualsWhenOtherObjectIsNull() {
+        Result obj = null;
         boolean expResult = false;
         boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
+        assertEquals("Method returned that the objects were equal when other object was null.", expResult, result);
+    }
+    
+    /**
+     * Test of equals method, of class Result.
+     */
+    @Test
+    public void testEqualsWhenOtherObjectIsNotInstanceOfResult() {
+        String obj = "hejsvejs";
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+        assertEquals("Method returned that the objects were equal when other object was string.", expResult, result);
+    }
+    
+    /**
+     * Test of equals method, of class Result.
+     */
+    @Test
+    public void testEqualsWhenOtherObjectIsNotSameInstanceOfResult() {
+        SpecifiedInspection[] otherTestArray = {(new SpecifiedInspection("a", 1)), (new SpecifiedInspection("b", 2))};
+        Result obj = new Result(otherTestArray);
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+        assertEquals("Method returned that the objects were equal.", expResult, result);
+    }
+    
+    /**
+     * Test of equals method, of class Result.
+     */
+    @Test
+    public void testEqualsWhenOtherObjectIsSameInstanceOfResult() {
+        Remark remark = new Remark("Passed.", true);
+        SpecifiedInspection[] otherTestArray = {(new SpecifiedInspection("a", 1))};
+        Result obj = new Result(otherTestArray);
+        obj.addRemark(remark);
+        instance.addRemark(remark);
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals("Method returned that the objects were not equal.", expResult, result);
     }
     
 }

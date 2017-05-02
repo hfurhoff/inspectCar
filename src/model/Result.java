@@ -79,13 +79,13 @@ public class Result {
         }
         
         Result otherResult = (Result) obj;
-        theObjectsAreEqual &= this.latestPerformedInspection == otherResult.getLatestPerformedInspection();
+        theObjectsAreEqual &= (this.latestPerformedInspection == otherResult.getLatestPerformedInspection());
         theObjectsAreEqual &= (this.getNumberOfRemarks() == otherResult.getNumberOfRemarks());
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
         for(int i = 0; i < this.getNumberOfRemarks(); i++){
-            theObjectsAreEqual &= this.remarks[i].equals(otherResult.getRemark(i));
+            theObjectsAreEqual &= this.getRemark(i).equals(otherResult.getRemark(i));
         }
         
         return theObjectsAreEqual;
