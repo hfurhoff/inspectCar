@@ -29,5 +29,26 @@ public class StoredResult {
         this.result = result;
         this.doneInspections = doneInspections;
     }
+
+    public boolean equals(Object obj) {
+        boolean theObjectsAreEqual = true;
+        theObjectsAreEqual &= (obj instanceof StoredResult);
+        if(theObjectsAreEqual == false)
+            return theObjectsAreEqual;
+        
+        StoredResult otherStoredResult = (StoredResult) obj;
+        theObjectsAreEqual &= vehicle.equals(otherStoredResult.getVehicle());
+        theObjectsAreEqual &= result.equals(otherStoredResult.getResult());
+        theObjectsAreEqual &= doneInspections.equals(otherStoredResult.getDoneInspections());
+        return theObjectsAreEqual;
+    }
+
+    private VehicleDTO getVehicle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Object getResult() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

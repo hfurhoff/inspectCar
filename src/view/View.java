@@ -9,7 +9,7 @@ import controller.Controller;
 import dto.CreditCardDTO;
 import dto.Remark;
 import externals.SpecifiedInspection;
-import stateHandler.StatePrinter;
+import state.StateHandler;
 
 /**
  * This class is a placeholder for the entire view.
@@ -31,7 +31,7 @@ public class View {
      * Runs the program once.
      */
     public void runProgram() {
-        StatePrinter printer = new StatePrinter();
+        StateHandler printer = new StateHandler();
         printer.print(contr.getCurrentState());
         
         contr.startNewInspection();

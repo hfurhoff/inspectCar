@@ -3,7 +3,7 @@ package controller;
 
 import dto.CreditCardDTO;
 import dto.Remark;
-import stateHandler.State;
+import state.State;
 import dto.VehicleDTO;
 import externals.SpecifiedInspection;
 import integration.DatabaseManager;

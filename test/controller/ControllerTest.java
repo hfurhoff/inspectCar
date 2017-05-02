@@ -5,11 +5,12 @@
  */
 package controller;
 
-import dto.VehicleDTO;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import state.State;
+import static state.StateHandler.stateToString;
 
 /**
  * Test of class Controller
@@ -38,9 +39,9 @@ public class ControllerTest {
     @Test
     public void testStartNewInspection() {
         instance.startNewInspection();
-        boolean result = instance.getCurrentState().equalsIgnoreCase("Inspection has started.");
-        boolean expectedRes = true;
-        assertEquals(("State should have been \"Inspection has started.\" but was: " + instance.getCurrentState()), expectedRes, result);
+        State result = instance.getCurrentState();
+        State expectedRes = State.AN_INSPECTION_HAS_STARTED;
+        assertEquals(("State should have been AN_INSPECTION_HAS_STARTED but was: " + stateToString(instance.getCurrentState())), expectedRes, result);
         
     }
 
@@ -50,9 +51,9 @@ public class ControllerTest {
     @Test
     public void testCloseGarageDoor() {
         instance.closeGarageDoor();
-        boolean result = instance.getCurrentState().equalsIgnoreCase("Door has closed.");
-        boolean expectedRes = true;
-        assertEquals(("State should have been \"Door has closed.\" but was: " + instance.getCurrentState()), expectedRes, result);
+        State result = instance.getCurrentState();
+        State expectedRes = State.DOOR_HAS_CLOSED;
+        assertEquals(("State should have been DOOR_HAS_CLOSED but was: " + stateToString(instance.getCurrentState())), expectedRes, result);
     }
 
     /**
@@ -60,10 +61,11 @@ public class ControllerTest {
      */
     @Test
     public void testCorrectCostForInspectionBasedOnVehicle() {
-        VehicleDTO vehicle = null;
+        String regNo = null;
         int expResult = 900;
-        int result = instance.calculateCostForInspectionBasedOnVehicle(vehicle);
-        assertEquals(("Cost should have been 900 but was " + instance.calculateCostForInspectionBasedOnVehicle(vehicle)),expResult, result);
+        int result = instance.calculateCostForInspectionBasedOnVehicle(regNo);
+        assertEquals(("Cost should have been 900 but was " + 
+                instance.calculateCostForInspectionBasedOnVehicle(regNo)),expResult, result);
     }
     
     /**
@@ -71,11 +73,13 @@ public class ControllerTest {
      */
     @Test
     public void testCorrectStateAfterHavingEnteredRegNumber(){
-        VehicleDTO vehicle = null;
-        boolean expectedRes = true;
-        instance.calculateCostForInspectionBasedOnVehicle(vehicle);
-        boolean result = instance.getCurrentState().equalsIgnoreCase("Registrationnumber has been entered and cost has been returned.");
-        assertEquals(("State should have been \"Registrationnumber has been entered and cost has been returned.\" but was: " + instance.getCurrentState()),expectedRes, result);
+        String regNo = null;
+        State expectedRes = State.REGISTRATION_NUMBER_HAS_BEEN_ENTERED_AND_COST_HAS_BEEN_RETURNED;
+        instance.calculateCostForInspectionBasedOnVehicle(regNo);
+        State result = instance.getCurrentState();
+        assertEquals(("State should have been "
+                + "REGISTRATION_NUMBER_HAS_BEEN_ENTERED_AND_COST_HAS_BEEN_RETURNED"
+                + " but was: " + stateToString(instance.getCurrentState())), expectedRes, result);
     }
     
 }

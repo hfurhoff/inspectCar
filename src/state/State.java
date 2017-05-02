@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package stateHandler;
+package state;
 
 /**
  * An enum class to decrease bad smell and to keep track of the programs progress.

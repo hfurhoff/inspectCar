@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package stateHandler;
+package state;
 
 /**
  * Prints a certain string in response to some state
  * @author Coyote
  */
-public class StatePrinter {
+public class StateHandler {
 
     /**
      * Prints a certain string in response to some state.
@@ -62,6 +62,60 @@ public class StatePrinter {
                 break;
             
         }
+    }
+    
+    public static String stateToString(State state){
+        
+        String returnString = "";
+        
+        switch(state){
+            case NO_INSPECTION_HAS_BEGUN:
+                returnString = "NO_INSPECTION_HAS_BEGUN";
+                break;
+                
+            case AN_INSPECTION_HAS_STARTED:
+                returnString = ("AN_INSPECTION_HAS_STARTED");
+                break;
+                
+            case DOOR_HAS_CLOSED:
+                returnString = ("DOOR_HAS_CLOSED");
+                break;
+                
+            case REGISTRATION_NUMBER_HAS_BEEN_ENTERED_AND_COST_HAS_BEEN_RETURNED:
+                returnString = ("REGISTRATION_NUMBER_HAS_BEEN_ENTERED_AND_COST_HAS_BEEN_RETURNED");
+                break;
+                
+            case CUSTOMER_HAS_PAYED_WITH_AN_APPROVED_CREDITCARD:
+                returnString = ("CUSTOMER_HAS_PAYED_WITH_AN_APPROVED_CREDITCARD");
+                break;
+                
+            case CUSTOMER_HAS_TRIED_TO_PAY_WITH_A_NONAPPROVED_CREDITCARD:
+                returnString = ("CUSTOMER_HAS_TRIED_TO_PAY_WITH_A_NONAPPROVED_CREDITCARD");
+                break;
+                
+            case THERE_ARE_MORE_INSPECTIONS_TO_BE_MADE:
+                returnString = ("THERE_ARE_MORE_INSPECTIONS_TO_BE_MADE");
+                break;
+                
+            case THERE_ARE_NO_MORE_INSPECTIONS:
+                returnString = ("THERE_ARE_NO_MORE_INSPECTIONS");
+                break;
+                
+            case INSPECTOR_GOT_ANOTHER_INSPECTION:
+                returnString = ("INSPECTOR_GOT_ANOTHER_INSPECTION");
+                break;
+                
+            case INSPECTOR_ENTERED_A_REMARK:
+                returnString = ("INSPECTOR_ENTERED_A_REMARK");
+                break;
+                
+            case THE_INSPECTION_IS_FINISHED:
+                returnString = ("THE_INSPECTION_IS_FINISHED");
+                break;
+                
+        }
+        
+        return returnString;
     }
     
 }

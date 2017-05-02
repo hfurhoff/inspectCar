@@ -44,4 +44,15 @@ public class DatabaseManager {
     public void storeResult(VehicleDTO vehicle, Result result, SpecifiedInspection[] doneInspections) {
         storedResults = new StoredResult(vehicle, result, doneInspections);
     }
+
+    /**
+     * Returns the stored result.
+     * @return The stored result.
+     */
+    StoredResult getStoredResult() {
+        return storedResults;
+    }
+
+    
+    
 }
