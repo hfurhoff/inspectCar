@@ -28,7 +28,7 @@ public class View {
     }
 
     /**
-     * Runs the program once.
+     * Runs the program once and makes printouts of the progress.
      */
     public void runProgram() {
         StateHandler printer = new StateHandler();

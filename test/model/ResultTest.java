@@ -38,6 +38,9 @@ public class ResultTest {
         instance = null;
     }
 
+    /**
+     * Test of constructor, of class Result.
+     */
     @Test
     public void testThatResultIsInitializedCorrectly() {
         int expectedRes = testArray.length;

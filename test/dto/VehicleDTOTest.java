@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Test of class vehicleDTO.
  * @author Coyote
  */
 public class VehicleDTOTest {

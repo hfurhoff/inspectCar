@@ -23,6 +23,11 @@ public class VehicleDTO {
         return regNumber;
     }
     
+    /**
+     * Compares this object and the parameter object to see if they are equal.
+     * @param obj The presumed equal object.
+     * @return True if they are equal, false if not equal. 
+     */
     public boolean equals(VehicleDTO obj){
         boolean theObjectsAreEqual = true;
         theObjectsAreEqual &= (obj instanceof VehicleDTO);

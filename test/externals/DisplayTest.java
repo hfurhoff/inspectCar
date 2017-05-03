@@ -42,6 +42,9 @@ public class DisplayTest {
         assertEquals("Number was not updated", expectedResult, result);
     }
     
+    /**
+     * Test of showNextNumber method, of class Display.
+     */
     @Test
     public void testThatNumberIsUpdatedCorrectly() {
         boolean expectedResult = true;

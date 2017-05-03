@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Test of class remark.
  * @author Coyote
  */
 public class RemarkTest {

@@ -35,6 +35,11 @@ public class Remark {
         return remark;
     }
     
+    /**
+     * Compares this object and the parameter object to see if they are equal.
+     * @param obj The presumed equal object.
+     * @return True if they are equal, false if not equal. 
+     */
     @Override
     public boolean equals(Object obj){
         boolean theObjectsAreEqual = true;

@@ -64,6 +64,11 @@ public class StateHandler {
         }
     }
     
+    /**
+     * Returns the stringrepresentation of the specified state.
+     * @param state The state that the stringrepresentation is wanted for.
+     * @return The stringrepresentation of the specified state.
+     */
     public static String stateToString(State state){
         
         String returnString = "";

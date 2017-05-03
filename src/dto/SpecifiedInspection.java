@@ -35,11 +35,20 @@ public class SpecifiedInspection {
         return partToInspect;
     }
     
+    /**
+     * Returns the stringrepresentation of the object.
+     * @return The stringrepresentation of the object.
+     */
     @Override
     public String toString(){
         return ("Part to inspect and cost: " + partToInspect + ", " + cost);
     }
     
+    /**
+     * Compares this object and the parameter object to see if they are equal.
+     * @param obj The presumed equal object.
+     * @return True if they are equal, false if not equal. 
+     */
     public boolean equals(Object obj){
         boolean theObjectsAreEqual = true;
         theObjectsAreEqual &= (obj instanceof SpecifiedInspection);

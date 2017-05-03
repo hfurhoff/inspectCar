@@ -29,6 +29,10 @@ public class GarageDoor {
         this.isOpen = false;
     }
     
+    /**
+     * Returns the stringrepresentation of the object.
+     * @return The stringrepresentation of the object.
+     */
     @Override
     public String toString(){
         if(isOpen)

@@ -16,7 +16,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Test of class StoredResult.
  * @author Coyote
  */
 public class StoredResultTest {

@@ -9,7 +9,7 @@ import startUp.StartUp;
 import view.View;
 
 /**
- * 
+ * The main.
  * @author Coyote
  */
 public class InspectCar {

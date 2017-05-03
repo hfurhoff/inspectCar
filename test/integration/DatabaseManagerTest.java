@@ -13,7 +13,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Test of class DatabaseManager.
  * @author Coyote
  */
 public class DatabaseManagerTest {
@@ -46,6 +46,9 @@ public class DatabaseManagerTest {
         assertEquals("The number of inspections were wrong", expResult, result);
     }
     
+    /**
+     * Test of getInspectionsForVehicle method, of class DatabaseManager.
+     */
     @Test
     public void testForCorrectInspections(){
         boolean expResult = true;

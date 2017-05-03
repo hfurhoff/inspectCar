@@ -5,11 +5,6 @@
  */
 package dto;
 
-import java.util.Calendar;
-import static java.util.Calendar.DAY_OF_MONTH;
-import static java.util.Calendar.MONTH;
-import static java.util.Calendar.YEAR;
-
 /**
  * This class is a data transfer object for a specified date.
  * @author Coyote
@@ -40,6 +35,10 @@ public class Date {
         year = 2017;
     }
     
+    /**
+     * Returns the stringrepresentation of the date.
+     * @return The stringrepresentation of the date.
+     */
     @Override
     public String toString(){
         if(day == 0)

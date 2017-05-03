@@ -4,7 +4,7 @@ import externals.GarageDoor;
 import externals.Display;
 
 /**
- * 
+ * This class is responsible for making calls to the external systems controlling the garagedoor and the display.
  * @author Coyote
  */
 public class Garage {

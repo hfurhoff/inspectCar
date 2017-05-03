@@ -71,7 +71,8 @@ public class Controller {
      * @param creditCard The customers creditcard that will pay for the cost of the inspection.
      */
     public void pay(CreditCardDTO creditCard){
-        Payment currentPayment = new Payment(creditCard, inspection.getCost(), bank, printer);
+        final int cost = inspection.getCost();
+        Payment currentPayment = new Payment(creditCard, cost, bank, printer);
         boolean approvedPayment = currentPayment.getApproved();
         if(approvedPayment){
             this.currentState = State.CUSTOMER_HAS_PAYED_WITH_AN_APPROVED_CREDITCARD;
