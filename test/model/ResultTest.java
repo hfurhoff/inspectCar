@@ -29,7 +29,7 @@ public class ResultTest {
     public void setUp() {
         SpecifiedInspection[] specInsp = { (new SpecifiedInspection("a", 1))};
         this.testArray = specInsp;
-        instance = getGenericResult(testArray);
+        instance = getTestResult(testArray);
     }
     
     @After
@@ -53,8 +53,8 @@ public class ResultTest {
      */
     @Test
     public void testAddRemark() {
-        Remark remark = getGenericRemark();
-        Result otherInstance = getGenericResult(testArray);
+        Remark remark = getTestRemark();
+        Result otherInstance = getTestResult(testArray);
         otherInstance.addRemark(remark);
         instance.addRemark(remark);
         
@@ -70,8 +70,8 @@ public class ResultTest {
     public void testGetTextToPrint() {
         SpecifiedInspection[] inspectionChecklist = {new SpecifiedInspection("a", 1)};
         VehicleDTO vehicle = new VehicleDTO("123ABC");
-        Remark remark = getGenericRemark();
-        Result newInstance = getGenericResult(inspectionChecklist);
+        Remark remark = getTestRemark();
+        Result newInstance = getTestResult(inspectionChecklist);
         newInstance.addRemark(remark);
         String expResult = "PRINTED RESULT:\nThe vehicle with registration number 123ABC was inspected. This is the result. \na was inspected. The vehicle passed. \nCOMMENT: Passed\n";
         String result = newInstance.getTextToPrint(inspectionChecklist, vehicle);
@@ -106,7 +106,7 @@ public class ResultTest {
     @Test
     public void testEqualsWhenOtherObjectIsNotSameInstanceOfResult() {
         SpecifiedInspection[] otherTestArray = {(new SpecifiedInspection("a", 1)), (new SpecifiedInspection("b", 2))};
-        Result obj = getGenericResult(otherTestArray);
+        Result obj = getTestResult(otherTestArray);
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals("Method returned that the objects were equal.", expResult, result);
@@ -117,9 +117,9 @@ public class ResultTest {
      */
     @Test
     public void testEqualsWhenOtherObjectIsSameInstanceOfResult() {
-        Remark remark = getGenericRemark();
+        Remark remark = getTestRemark();
         SpecifiedInspection[] otherTestArray = {(new SpecifiedInspection("a", 1))};
-        Result obj = getGenericResult(otherTestArray);
+        Result obj = getTestResult(otherTestArray);
         obj.addRemark(remark);
         instance.addRemark(remark);
         boolean expResult = true;
@@ -128,11 +128,11 @@ public class ResultTest {
     }
 
     
-    private static Remark getGenericRemark() {
+    private static Remark getTestRemark() {
         return new Remark("Passed", true);
     }
     
-    private static Result getGenericResult(SpecifiedInspection[] otherTestArray) {
+    private static Result getTestResult(SpecifiedInspection[] otherTestArray) {
         return new Result(otherTestArray);
     }
     

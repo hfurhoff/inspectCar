@@ -28,7 +28,13 @@ public class ReceiptTest {
     
     @Before
     public void setUp() {
-        creditcard = new CreditCardDTO(1, "", "", 1, 1, 1);
+        final int pin = 1;
+        final String number = "";
+        final String holder = "";
+        final int expiryMonth = 1;
+        final int expiryYear = 1;
+        final int cvc = 1;
+        creditcard = new CreditCardDTO(pin, number, holder, expiryMonth, expiryYear, cvc);
         bank = new PaymentAuthorizer();
         printer = new Printer();
     }

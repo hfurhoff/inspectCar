@@ -12,7 +12,7 @@ import dto.SpecifiedInspection;
 public class Result {
     
     private final Remark[] remarks;
-    private int latestPerformedInspection;
+    private int indexOfLatestPerformedInspection;
     
     /**
      * Creates a result object where the inspector later on can add his or hers remarks for each specified inspection.
@@ -24,7 +24,7 @@ public class Result {
             counter++;
         }
         this.remarks = new Remark[counter];
-        latestPerformedInspection = -1;
+        indexOfLatestPerformedInspection = -1;
     }    
     
     /**
@@ -32,8 +32,8 @@ public class Result {
      * @param remark The remark for the latest performed specified inspection.
      */
     public void addRemark(Remark remark) {
-        latestPerformedInspection++;
-        remarks[latestPerformedInspection] = remark;
+        indexOfLatestPerformedInspection++;
+        remarks[indexOfLatestPerformedInspection] = remark;
     }
 
     /**
@@ -85,7 +85,7 @@ public class Result {
         }
         
         Result otherResult = (Result) obj;
-        theObjectsAreEqual &= (this.latestPerformedInspection == otherResult.getLatestPerformedInspection());
+        theObjectsAreEqual &= (this.indexOfLatestPerformedInspection == otherResult.getIndexOfLatestPerformedInspection());
         theObjectsAreEqual &= (this.getNumberOfRemarks() == otherResult.getNumberOfRemarks());
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
@@ -97,11 +97,11 @@ public class Result {
         return theObjectsAreEqual;
     }
 
-    private int getLatestPerformedInspection() {
-        return this.latestPerformedInspection;
+    private int getIndexOfLatestPerformedInspection() {
+        return this.indexOfLatestPerformedInspection;
     }
 
-    private Remark getRemark(int i) {
-        return remarks[i];
+    private Remark getRemark(int index) {
+        return remarks[index];
     }
 }

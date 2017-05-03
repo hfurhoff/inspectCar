@@ -53,5 +53,17 @@ public class DisplayTest {
         assertEquals("Method showNextNumber updated the number to be displayed with wrong number", expectedResult, result);
     }    
     
-    
+    /**
+     * Test of toString method, of class Display.
+     */
+    @Test
+    public void testThatValueIsReset() {
+        boolean expectedResult = true;
+        final int maximumDisplayNumber = 1000;
+        for(int i = 0; i < maximumDisplayNumber; i++){
+            instance.showNextNumber();
+        }
+        boolean result = instance.toString().equalsIgnoreCase("Display is showing number 0");
+        assertEquals("The string returned was: " + instance.toString(), expectedResult, result);
+    }
 }

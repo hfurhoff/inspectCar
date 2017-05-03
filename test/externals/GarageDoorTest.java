@@ -32,10 +32,10 @@ public class GarageDoorTest {
     }
 
     /**
-     * Test of openDoor method, of class GarageDoor.
+     * Test of toString method, of class GarageDoor.
      */
     @Test
-    public void testOpenDoor() {
+    public void testToStringWhenDoorIsOpen() {
         boolean expectedResult = true;
         instance.openDoor();
         boolean result = instance.toString().equalsIgnoreCase("Garagedoor is open");
@@ -43,10 +43,10 @@ public class GarageDoorTest {
     }
 
     /**
-     * Test of closeDoor method, of class GarageDoor.
+     * Test of toString method, of class GarageDoor.
      */
     @Test
-    public void testCloseDoor() {
+    public void testToStringWhenDoorIsClosed() {
         boolean expectedResult = true;
         instance.closeDoor();
         boolean result = instance.toString().equalsIgnoreCase("Garagedoor is closed");

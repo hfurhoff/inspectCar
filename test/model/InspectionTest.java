@@ -57,19 +57,48 @@ public class InspectionTest {
      * Test of hasMoreInspections method, of class Inspection.
      */
     @Test
-    public void testHasMoreInspections() {
+    public void testHasMoreInspectionsWhenThereShouldBeMore() {
         boolean expResult = true;
         boolean result = instance.hasMoreInspections();
         assertEquals("Returned that there were no more inspection when there is.", expResult, result);
+    }
+    
+    /**
+     * Test of hasMoreInspections method, of class Inspection.
+     */
+    @Test
+    public void testHasMoreInspectionsWhenThereShouldntBeMore() {
+        final int numberOfSpecifiedInspectionsInTheDatabase = 4;
+    for(int i = 0; i < numberOfSpecifiedInspectionsInTheDatabase; i++){
+            instance.getNextSpecifiedInspection();
+        }
+        boolean expResult = false;
+        boolean result = instance.hasMoreInspections();
+        assertEquals("Returned that there were more inspection when there is not.", expResult, result);
     }
 
     /**
      * Test of getNextSpecifiedInspection method, of class Inspection.
      */
     @Test
-    public void testGetNextSpecifiedInspection() {
+    public void testGetNextSpecifiedInspectionWhenThereAreMoreInspectionsToCome() {
         boolean expResult = true;
         boolean result = instance.getNextSpecifiedInspection().equals(specInsp[0]);
         assertEquals("Did not return correct specified inspection.", expResult, result);
+    }
+    
+    /**
+     * Test of getNextSpecifiedInspection method, of class Inspection.
+     */
+    @Test
+    public void testGetNextSpecifiedInspectionWhenThereAreNotMoreInspectionsToCome() {
+        final int numberOfSpecifiedInspectionsInTheDatabase = 4;
+        for(int i = 0; i < numberOfSpecifiedInspectionsInTheDatabase; i++){
+            instance.getNextSpecifiedInspection();
+        }
+        
+        boolean expResult = true;
+        boolean result = instance.getNextSpecifiedInspection() == null;
+        assertEquals("Did not return null when there no more specified inspections.", expResult, result);
     }
 }

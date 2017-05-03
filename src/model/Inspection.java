@@ -60,10 +60,13 @@ public class Inspection {
     }
 
     /**
-     * Provides the next specified inspection to be performed.
-     * @return The next inspection to be performed by the inspector.
+     * Returns the next specified inspection to be performed or null if there are no more inspections to be made.
+     * @return The next inspection to be performed by the inspector or null if there are no more inspections to be made.
      */
     public SpecifiedInspection getNextSpecifiedInspection() {
+        if(nextSpecifiedInspection >= inspectionChecklist.length)
+            return null;
+        
         SpecifiedInspection nextInspectionToBePerformed = inspectionChecklist[nextSpecifiedInspection];
         nextSpecifiedInspection++;
         return nextInspectionToBePerformed;

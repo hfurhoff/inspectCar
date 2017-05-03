@@ -38,6 +38,7 @@ public class Garage {
      * Makes a stringrepresentation of the instance.
      * @return The stringrepresentation of the instance.
      */
+    @Override
     public String toString(){
         return ("The garage has a door and a display. " + door.toString() + ". " + disp.toString() + ".");
     }

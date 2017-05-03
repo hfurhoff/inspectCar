@@ -21,6 +21,10 @@ public class Display {
     public void showNextNumber(){
         int maximumNumberToDisplay = 1000;
         this.numberToDisplay++;
+        resetIfNecessary(maximumNumberToDisplay);
+    }
+
+    private void resetIfNecessary(int maximumNumberToDisplay) {
         this.numberToDisplay = this.numberToDisplay % maximumNumberToDisplay;
     }
     
