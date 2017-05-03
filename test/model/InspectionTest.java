@@ -5,15 +5,11 @@
  */
 package model;
 
-import dto.Remark;
 import dto.VehicleDTO;
 import dto.SpecifiedInspection;
 import integration.DatabaseManager;
-import integration.Printer;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -41,6 +37,10 @@ public class InspectionTest {
 
     @After
     public void tearDown() throws Exception {
+        vehicle = null;
+        dbm = null;
+        specInsp = null;
+        instance = null;
     }
 
     /**

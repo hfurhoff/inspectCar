@@ -9,9 +9,7 @@ import integration.PaymentAuthorizer;
 import integration.Printer;
 import model.Payment;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,23 +19,25 @@ import static org.junit.Assert.*;
  */
 public class ReceiptTest {
     
+    CreditCardDTO creditcard;
+    PaymentAuthorizer bank;
+    Printer printer;
+    
     public ReceiptTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
     public void setUp() {
+        creditcard = new CreditCardDTO(1, "", "", 1, 1, 1);
+        bank = new PaymentAuthorizer();
+        printer = new Printer();
     }
     
     @After
     public void tearDown() {
+        creditcard = null;
+        bank = null;
+        printer = null;
     }
 
     /**
@@ -45,10 +45,7 @@ public class ReceiptTest {
      */
     @Test
     public void testGetTextToPrintWhenCostIsLow() {
-        CreditCardDTO creditcard = new CreditCardDTO(1, "", "", 1, 1, 1);
         int cost = 1;
-        PaymentAuthorizer bank = new PaymentAuthorizer();
-        Printer printer = new Printer();
         Payment payment = new Payment(creditcard, cost, bank, printer);
         Receipt instance = new Receipt(payment);
         String expResult = "RECEIPT:\nThe payment off 1 SEK was approved on 4/5/2017";
@@ -61,10 +58,7 @@ public class ReceiptTest {
      */
     @Test
     public void testGetTextToPrintWhenCostIsHigh() {
-        CreditCardDTO creditcard = new CreditCardDTO(1, "", "", 1, 1, 1);
         int cost = 50000;
-        PaymentAuthorizer bank = new PaymentAuthorizer();
-        Printer printer = new Printer();
         Payment payment = new Payment(creditcard, cost, bank, printer);
         Receipt instance = new Receipt(payment);
         String expResult = "RECEIPT:\nThe payment off 50000 SEK was not approved on 4/5/2017";

@@ -9,11 +9,9 @@ import dto.CreditCardDTO;
 import dto.Remark;
 import dto.SpecifiedInspection;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 import state.State;
 import static state.StateHandler.stateToString;
 
@@ -26,14 +24,6 @@ public class ControllerTest {
     Controller instance;
     
     public ControllerTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
     }
     
     @Before

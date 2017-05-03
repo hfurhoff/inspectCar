@@ -18,12 +18,26 @@ import static org.junit.Assert.*;
  */
 public class GarageTest {
 
+    Garage instance;
+    
+    public GarageTest() {
+    }
+    
+    @Before
+    public void setUp() {
+        instance = new Garage();
+    }
+    
+    @After
+    public void tearDown() {
+        instance = null;
+    }
+    
     /**
      * Test of nextCustomer method, of class Garage.
      */
     @Test
     public void testNextCustomer() {
-        Garage instance = new Garage();
         boolean expResult = true;
         instance.nextCustomer();
         boolean result = instance.toString().equalsIgnoreCase("The garage has a door and a display. Garagedoor is open. Display is showing number 1.");
@@ -35,7 +49,6 @@ public class GarageTest {
      */
     @Test
     public void testCloseDoor() {
-        Garage instance = new Garage();
         boolean expResult = true;
         instance.closeDoor();
         boolean result = instance.toString().equalsIgnoreCase("The garage has a door and a display. Garagedoor is closed. Display is showing number 0.");

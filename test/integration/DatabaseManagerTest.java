@@ -7,12 +7,8 @@ package integration;
 
 import dto.VehicleDTO;
 import dto.SpecifiedInspection;
-import dto.StoredResult;
-import model.Result;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,20 +21,19 @@ public class DatabaseManagerTest {
     public DatabaseManagerTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    VehicleDTO vehicle;
+    DatabaseManager instance;
     
     @Before
     public void setUp() {
+        vehicle = null;
+        instance = new DatabaseManager();
     }
     
     @After
     public void tearDown() {
+        vehicle = null;
+        instance = null;
     }
 
     /**
@@ -46,8 +41,6 @@ public class DatabaseManagerTest {
      */
     @Test
     public void testNumberOfInspections() {
-        VehicleDTO vehicle = null;
-        DatabaseManager instance = new DatabaseManager();
         int expResult = 4;
         int result = instance.getInspectionsForVehicle(vehicle).length;
         assertEquals("The number of inspections were wrong", expResult, result);
@@ -55,8 +48,6 @@ public class DatabaseManagerTest {
     
     @Test
     public void testForCorrectInspections(){
-        VehicleDTO vehicle = null;
-        DatabaseManager instance = new DatabaseManager();
         boolean expResult = true;
         SpecifiedInspection[] inspectionChecklist = instance.getInspectionsForVehicle(vehicle);
         boolean result = true;

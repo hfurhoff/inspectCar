@@ -6,11 +6,9 @@
 package externals;
 
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  * Tests the external system display.
@@ -18,7 +16,19 @@ import static org.junit.Assert.*;
  */
 public class DisplayTest {
     
+    Display instance;
+    
     public DisplayTest() {
+    }
+    
+    @Before
+    public void setUp(){
+        instance = new Display();
+    }
+    
+    @After
+    public void tearDown() {
+        instance = null;
     }
     
     /**
@@ -27,7 +37,6 @@ public class DisplayTest {
     @Test
     public void testThatNumberIsUpdated(){
         boolean expectedResult = false;
-        Display instance = new Display();
         instance.showNextNumber();
         boolean result = instance.toString().equalsIgnoreCase("Display is showing number 0");
         assertEquals("Number was not updated", expectedResult, result);
@@ -36,7 +45,6 @@ public class DisplayTest {
     @Test
     public void testThatNumberIsUpdatedCorrectly() {
         boolean expectedResult = true;
-        Display instance = new Display();
         instance.showNextNumber();
         boolean result = instance.toString().equalsIgnoreCase("Display is showing number 1");
         assertEquals("Method showNextNumber updated the number to be displayed with wrong number", expectedResult, result);
