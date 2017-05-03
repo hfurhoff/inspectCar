@@ -7,7 +7,7 @@ package controller;
 
 import dto.CreditCardDTO;
 import dto.Remark;
-import externals.SpecifiedInspection;
+import dto.SpecifiedInspection;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -38,7 +38,8 @@ public class Remark {
     @Override
     public boolean equals(Object obj){
         boolean theObjectsAreEqual = true;
-        theObjectsAreEqual &= (obj instanceof Remark);
+        final boolean isARemark = obj instanceof Remark;
+        theObjectsAreEqual &= isARemark;
         if(theObjectsAreEqual == false){
              return theObjectsAreEqual;
         }

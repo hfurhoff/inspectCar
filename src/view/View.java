@@ -8,7 +8,7 @@ package view;
 import controller.Controller;
 import dto.CreditCardDTO;
 import dto.Remark;
-import externals.SpecifiedInspection;
+import dto.SpecifiedInspection;
 import state.StateHandler;
 
 /**

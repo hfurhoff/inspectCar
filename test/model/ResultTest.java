@@ -7,7 +7,7 @@ package model;
 
 import dto.Remark;
 import dto.VehicleDTO;
-import externals.SpecifiedInspection;
+import dto.SpecifiedInspection;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -70,7 +70,7 @@ public class ResultTest {
         Remark remark = new Remark("Passed", true);
         Result newInstance = new Result(inspectionChecklist);
         newInstance.addRemark(remark);
-        String expResult = "The vehicle with registration number 123ABC was inspected. This is the result. \na was inspected. The vehicle passed. Passed\n";
+        String expResult = "PRINTED RESULT:\nThe vehicle with registration number 123ABC was inspected. This is the result. \na was inspected. The vehicle passed. \nCOMMENT: Passed\n";
         String result = newInstance.getTextToPrint(inspectionChecklist, vehicle);
         assertEquals("The text provided did not match the text expected.",expResult, result);
     }

@@ -3,7 +3,7 @@ package model;
 
 import dto.Remark;
 import dto.VehicleDTO;
-import externals.SpecifiedInspection;
+import dto.SpecifiedInspection;
 import integration.DatabaseManager;
 import integration.Printer;
 

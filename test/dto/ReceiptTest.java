@@ -51,7 +51,7 @@ public class ReceiptTest {
         Printer printer = new Printer();
         Payment payment = new Payment(creditcard, cost, bank, printer);
         Receipt instance = new Receipt(payment);
-        String expResult = "The payment off 1 SEK was approved on 4/5/2017";
+        String expResult = "RECEIPT:\nThe payment off 1 SEK was approved on 4/5/2017";
         String result = instance.getTextToPrint();
         assertEquals("Wrong receipt was made.", expResult, result);
     }
@@ -67,7 +67,7 @@ public class ReceiptTest {
         Printer printer = new Printer();
         Payment payment = new Payment(creditcard, cost, bank, printer);
         Receipt instance = new Receipt(payment);
-        String expResult = "The payment off 50000 SEK was not approved on 4/5/2017";
+        String expResult = "RECEIPT:\nThe payment off 50000 SEK was not approved on 4/5/2017";
         String result = instance.getTextToPrint();
         assertEquals("Wrong receipt was made.", expResult, result);
     }

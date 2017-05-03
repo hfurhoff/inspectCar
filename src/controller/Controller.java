@@ -5,7 +5,7 @@ import dto.CreditCardDTO;
 import dto.Remark;
 import state.State;
 import dto.VehicleDTO;
-import externals.SpecifiedInspection;
+import dto.SpecifiedInspection;
 import integration.DatabaseManager;
 import integration.Garage;
 import integration.PaymentAuthorizer;

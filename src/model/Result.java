@@ -3,7 +3,7 @@ package model;
 
 import dto.Remark;
 import dto.VehicleDTO;
-import externals.SpecifiedInspection;
+import dto.SpecifiedInspection;
 
 /**
  * The result of the inspection that will be sent to the database when the inspection is finished.
@@ -44,7 +44,7 @@ public class Result {
      */
     String getTextToPrint(SpecifiedInspection[] inspectionChecklist, VehicleDTO vehicle) {
         
-        String printableResult = ("The vehicle with registration number " + vehicle.getRegNo() + " was inspected. This is the result. \n");
+        String printableResult = ("PRINTED RESULT:\nThe vehicle with registration number " + vehicle.getRegNo() + " was inspected. This is the result. \n");
         for(int i = 0; i < remarks.length; i++){
             printableResult = printableResult.concat(inspectionChecklist[i].getPartToInspect());
             printableResult = printableResult.concat(" was inspected. The vehicle ");
@@ -52,7 +52,7 @@ public class Result {
                  printableResult = printableResult.concat("passed. ");
             else
                  printableResult = printableResult.concat("failed. ");
-            printableResult = printableResult.concat(remarks[i].getRemark() + "\n");
+            printableResult = printableResult.concat("\nCOMMENT: " + remarks[i].getRemark() + "\n");
         }
         
         return printableResult;
@@ -69,7 +69,8 @@ public class Result {
     @Override
     public boolean equals(Object obj){
         boolean theObjectsAreEqual = true;
-        theObjectsAreEqual &= (obj instanceof Result);
+        final boolean isResult = obj instanceof Result;
+        theObjectsAreEqual &= isResult;
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         

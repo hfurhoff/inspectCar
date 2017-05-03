@@ -1,5 +1,5 @@
 
-package externals;
+package dto;
 
 /**
  * Specifies what to inspect on a vehicle.

@@ -5,6 +5,8 @@
  */
 package externals;
 
+import dto.StoredResult;
+import dto.SpecifiedInspection;
 import dto.Remark;
 import dto.VehicleDTO;
 import model.Inspection;

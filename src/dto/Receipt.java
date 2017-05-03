@@ -28,10 +28,10 @@ public class Receipt {
         this.paymentApproved = payment.getApproved();
         
         if(paymentApproved){
-            textToPrint = ("The payment off " + cost + " SEK was approved on " + paymentDate.toString());
+            textToPrint = ("RECEIPT:\nThe payment off " + cost + " SEK was approved on " + paymentDate.toString());
         }
         else{
-            textToPrint = ("The payment off " + cost + " SEK was not approved on " + paymentDate.toString());
+            textToPrint = ("RECEIPT:\nThe payment off " + cost + " SEK was not approved on " + paymentDate.toString());
         }
     }
     

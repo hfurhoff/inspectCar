@@ -6,8 +6,8 @@
 package integration;
 
 import dto.VehicleDTO;
-import externals.SpecifiedInspection;
-import externals.StoredResult;
+import dto.SpecifiedInspection;
+import dto.StoredResult;
 import model.Result;
 import org.junit.After;
 import org.junit.AfterClass;

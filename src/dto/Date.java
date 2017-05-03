@@ -32,7 +32,7 @@ public class Date {
     }
     
     /**
-     * Creates a date of the current day.
+     * Creates a hardcoded date of the current day.
      */
     public Date() {
         day = 4;

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package externals;
+package dto;
 
+import dto.SpecifiedInspection;
 import dto.VehicleDTO;
 import model.Result;
 
@@ -33,7 +34,8 @@ public class StoredResult {
     @Override
     public boolean equals(Object obj) {
         boolean theObjectsAreEqual = true;
-        theObjectsAreEqual &= (obj instanceof StoredResult);
+        final boolean isStoredResult = obj instanceof StoredResult;
+        theObjectsAreEqual &= isStoredResult;
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
