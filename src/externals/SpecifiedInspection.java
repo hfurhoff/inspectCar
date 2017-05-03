@@ -35,7 +35,24 @@ public class SpecifiedInspection {
         return partToInspect;
     }
     
+    @Override
     public String toString(){
         return ("Part to inspect and cost: " + partToInspect + ", " + cost);
+    }
+    
+    public boolean equals(Object obj){
+        boolean theObjectsAreEqual = true;
+        theObjectsAreEqual &= (obj instanceof SpecifiedInspection);
+        if(theObjectsAreEqual == false)
+            return theObjectsAreEqual;
+        
+        if(obj == null){
+            theObjectsAreEqual = false;
+            return theObjectsAreEqual;
+        }
+        
+        SpecifiedInspection otherSpecInsp = (SpecifiedInspection) obj;
+        theObjectsAreEqual &= this.toString().equalsIgnoreCase(otherSpecInsp.toString());
+        return theObjectsAreEqual;
     }
 }

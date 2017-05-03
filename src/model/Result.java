@@ -31,7 +31,7 @@ public class Result {
      * Updates the result with the remark for the latest performed specified inspection.
      * @param remark The remark for the latest performed specified inspection.
      */
-    void addRemark(Remark remark) {
+    public void addRemark(Remark remark) {
         latestPerformedInspection++;
         remarks[latestPerformedInspection] = remark;
     }

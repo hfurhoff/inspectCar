@@ -29,6 +29,7 @@ public class GarageDoor {
         this.isOpen = false;
     }
     
+    @Override
     public String toString(){
         if(isOpen)
             return "Garagedoor is open";

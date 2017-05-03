@@ -53,10 +53,11 @@ public class ResultTest {
         Remark remark = new Remark("Passed", true);
         Result otherInstance = new Result(testArray);
         otherInstance.addRemark(remark);
+        instance.addRemark(remark);
         
-        boolean expectedRes = false;
+        boolean expectedRes = true;
         boolean result = instance.equals(otherInstance);
-        assertEquals("No remark was added.", expectedRes, result);
+        assertEquals("Same remark was added.", expectedRes, result);
     }
 
     /**

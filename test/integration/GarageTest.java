@@ -27,7 +27,7 @@ public class GarageTest {
         boolean expResult = true;
         instance.nextCustomer();
         boolean result = instance.toString().equalsIgnoreCase("The garage has a door and a display. Garagedoor is open. Display is showing number 1.");
-        assertEquals("", expResult, result);
+        assertEquals("The method nextCustomer has not been called.", expResult, result);
     }
 
     /**

@@ -45,7 +45,16 @@ public class StoredResult {
         StoredResult otherStoredResult = (StoredResult) obj;
         theObjectsAreEqual &= vehicle.equals(otherStoredResult.getVehicle());
         theObjectsAreEqual &= result.equals(otherStoredResult.getResult());
-        theObjectsAreEqual &= doneInspections.equals(otherStoredResult.getDoneInspections());
+        
+        if(doneInspections.length != otherStoredResult.getNumberOfDoneInspections()){
+            theObjectsAreEqual = false;
+            return theObjectsAreEqual;
+        }
+        
+        for(int i = 0; i < doneInspections.length; i++){
+            theObjectsAreEqual &= doneInspections[i].equals(otherStoredResult.getDoneInspection(i));
+        }
+        
         return theObjectsAreEqual;
     }
 
@@ -57,7 +66,11 @@ public class StoredResult {
         return result;
     }
     
-    private SpecifiedInspection[] getDoneInspections() {
-        return doneInspections;
+    private SpecifiedInspection getDoneInspection(int index) {
+        return doneInspections[index];
+    }
+
+    private int getNumberOfDoneInspections() {
+        return doneInspections.length;
     }
 }

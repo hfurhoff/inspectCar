@@ -66,21 +66,4 @@ public class DatabaseManagerTest {
         result &= inspectionChecklist[3].toString().equalsIgnoreCase("Part to inspect and cost: Suspension, 150");
         assertEquals("It was not the correct inspections returned", expResult, result);
     }
-
-    /**
-     * Test of storeResult method, of class DatabaseManager.
-     */
-    @Test
-    public void testStoreResult() {
-        VehicleDTO vehicle = null;
-        StoredResult expectedRes = null;
-        SpecifiedInspection[] doneInspections = null;
-        DatabaseManager instance = new DatabaseManager();
-        Result testResult = null;
-        instance.storeResult(vehicle, testResult, doneInspections);
-        StoredResult storedResultForAVehicle = instance.getStoredResult();
-        boolean result = storedResultForAVehicle.equals(testResult);
-        
-    }
-    
 }

@@ -35,9 +35,17 @@ public class Date {
      * Creates a date of the current day.
      */
     public Date() {
-        day = DAY_OF_MONTH;
-        month = MONTH;
-        year = YEAR;
+        day = 4;
+        month = 5;
+        year = 2017;
+    }
+    
+    @Override
+    public String toString(){
+        if(day == 0)
+            return (month + "/" + year);
+        else
+            return (day + "/" + month + "/" + year);
     }
     
 }

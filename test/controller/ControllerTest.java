@@ -5,10 +5,15 @@
  */
 package controller;
 
+import dto.CreditCardDTO;
+import dto.Remark;
+import externals.SpecifiedInspection;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import state.State;
 import static state.StateHandler.stateToString;
 
@@ -21,6 +26,14 @@ public class ControllerTest {
     Controller instance;
     
     public ControllerTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
     }
     
     @Before
@@ -81,5 +94,77 @@ public class ControllerTest {
                 + "REGISTRATION_NUMBER_HAS_BEEN_ENTERED_AND_COST_HAS_BEEN_RETURNED"
                 + " but was: " + stateToString(instance.getCurrentState())), expectedRes, result);
     }
+
+    /**
+     * Test of pay method, of class Controller.
+     */
+    @Test
+    public void testCorrectStateAfterPay() {
+        instance.calculateCostForInspectionBasedOnVehicle("123ABC");
+        CreditCardDTO creditCard = null;
+        instance.pay(creditCard);
+        State expectedRes = State.CUSTOMER_HAS_PAYED_WITH_AN_APPROVED_CREDITCARD;
+        State result = instance.getCurrentState();
+        assertEquals("Code has not been run.", result, expectedRes);
+        
+    }
+
+    /**
+     * Test of hasMoreInspections method, of class Controller.
+     */
+    @Test
+    public void testHasMoreInspections() {
+        instance.calculateCostForInspectionBasedOnVehicle("123ABC");
+        boolean expResult = true;
+        boolean result = instance.hasMoreInspections();
+        assertEquals("Method should have returned that there were more inspections to be made.", expResult, result);
+    }
+
+    /**
+     * Test of hasMoreInspections method, of class Controller.
+     */
+    @Test
+    public void testCorrectStateAfterHasMoreInspections() {
+        instance.calculateCostForInspectionBasedOnVehicle("123ABC");
+        instance.hasMoreInspections();
+        State expResult = State.THERE_ARE_MORE_INSPECTIONS_TO_BE_MADE;
+        State result = instance.getCurrentState();
+        assertEquals("Code has not been run.", expResult, result);
+    }    
     
+    /**
+     * Test of getNextSpecifiedInspection method, of class Controller.
+     */
+    @Test
+    public void testGetNextSpecifiedInspection() {
+        instance.calculateCostForInspectionBasedOnVehicle("123ABC");
+        boolean expResult = true;
+        boolean result = instance.getNextSpecifiedInspection().equals(new SpecifiedInspection("Brakes", 250));
+        assertEquals("The returned specified inspection was not what was expected.", expResult, result);
+    }
+
+    /**
+     * Test of getNextSpecifiedInspection method, of class Controller.
+     */
+    @Test
+    public void testCorrectStateAfterGetNextSpecifiedInspection() {
+        instance.calculateCostForInspectionBasedOnVehicle("123ABC");
+        instance.getNextSpecifiedInspection();
+        State expResult = State.INSPECTOR_GOT_ANOTHER_INSPECTION;
+        State result = instance.getCurrentState();
+        assertEquals("Code has not been run.", expResult, result);
+    }
+    
+    /**
+     * Test of enterRemark method, of class Controller.
+     */
+    @Test
+    public void testCorrectStateAfterEnterRemark() {
+        instance.calculateCostForInspectionBasedOnVehicle("123ABC");
+        Remark remark = null;
+        instance.enterRemark(remark);
+        State expResult = State.INSPECTOR_ENTERED_A_REMARK;
+        State result = instance.getCurrentState();
+        assertEquals("Code has not been run.", expResult, result);
+    }
 }

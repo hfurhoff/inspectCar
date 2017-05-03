@@ -41,18 +41,7 @@ public class DatabaseManager {
      * @param result The result of the inspection.
      * @param doneInspections The inspections that was performed.
      */
-    public void storeResult(VehicleDTO vehicle, Result result, SpecifiedInspection[] doneInspections) {
+    public void setStoredResult(VehicleDTO vehicle, Result result, SpecifiedInspection[] doneInspections) {
         storedResults = new StoredResult(vehicle, result, doneInspections);
     }
-
-    /**
-     * Returns the stored result.
-     * @return The stored result.
-     */
-    StoredResult getStoredResult() {
-        return storedResults;
-    }
-
-    
-    
 }

@@ -15,7 +15,7 @@ public class Inspection {
     private final SpecifiedInspection[] inspectionChecklist;
     private int nextSpecifiedInspection;
     private final int cost;
-    private Result result;
+    private final Result result;
     private final VehicleDTO vehicle;
     
     /**
@@ -83,7 +83,7 @@ public class Inspection {
      * @param printer The printer to be used when printing the results.
      */
     public void finishedWithInspection(DatabaseManager dbm, Printer printer) {
-        dbm.storeResult(vehicle, result, inspectionChecklist);
+        dbm.setStoredResult(vehicle, result, inspectionChecklist);
         String printableVersionOfTheResult = result.getTextToPrint(inspectionChecklist, vehicle);
         printer.print(printableVersionOfTheResult);
     }

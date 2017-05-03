@@ -81,13 +81,15 @@ public class StoredResultTest {
      */
     @Test
     public void testEqualsWhenOtherObjectIsSameInstanceOfStoredResult() {
-        Remark remark = new Remark("Passed.", true);
         VehicleDTO vehicle = new VehicleDTO("123ABC");
         SpecifiedInspection[] specInsp = {new SpecifiedInspection("Brakes", 666)};
-        Inspection inspection = new Inspection(vehicle, specInsp);
+        Result resultOfInspection = new Result(specInsp);
+        Remark remark = new Remark("Passed.", true);
+        resultOfInspection.addRemark(remark);
+        StoredResult otherInstance = new StoredResult(vehicle, resultOfInspection, specInsp);
         StoredResult obj = new StoredResult(vehicle, resultOfInspection, specInsp);
         boolean expResult = true;
-        boolean result = instance.equals(obj);
+        boolean result = otherInstance.equals(obj);
         assertEquals("Method returned that the objects were not equal.", expResult, result);
     }
     
