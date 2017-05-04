@@ -19,11 +19,11 @@ public class Result {
      * @param inspectionChecklist The inspection checklist that the inspector will later go through.
      */
     public Result(SpecifiedInspection[] inspectionChecklist) {
-        int counter = 0;
+        int numberOfInspections = 0;
         for(SpecifiedInspection inspection : inspectionChecklist){
-            counter++;
+            numberOfInspections++;
         }
-        this.remarks = new Remark[counter];
+        this.remarks = new Remark[numberOfInspections];
         indexOfLatestPerformedInspection = -1;
     }    
     
@@ -43,16 +43,25 @@ public class Result {
      * @return 
      */
     String getTextToPrint(SpecifiedInspection[] inspectionChecklist, VehicleDTO vehicle) {
+        String printableResult;
+        final String regNumberOfTheVehicle = vehicle.getRegNo(); 
         
-        String printableResult = ("PRINTED RESULT:\nThe vehicle with registration number " + vehicle.getRegNo() + " was inspected. This is the result. \n");
-        for(int i = 0; i < remarks.length; i++){
-            printableResult = printableResult.concat(inspectionChecklist[i].getPartToInspect());
-            printableResult = printableResult.concat(" was inspected. The vehicle ");
-            if(remarks[i].getPassed())
+        printableResult = ("PRINTED RESULT:\nThe vehicle with registration number " + 
+                regNumberOfTheVehicle + " was inspected. This is the result. \n");
+        
+        for(int indexOfCurrentSpecInsp = 0; indexOfCurrentSpecInsp < remarks.length; indexOfCurrentSpecInsp++){
+            final String partToInspect = inspectionChecklist[indexOfCurrentSpecInsp].getPartToInspect();
+            printableResult = printableResult.concat(partToInspect + " was inspected. The vehicle ");
+            
+            final boolean partPassedInspection = remarks[indexOfCurrentSpecInsp].getPassed();
+            
+            if(partPassedInspection)
                  printableResult = printableResult.concat("passed. ");
             else
                  printableResult = printableResult.concat("failed. ");
-            printableResult = printableResult.concat("\nCOMMENT: " + remarks[i].getRemark() + "\n");
+            
+            final String remarkOnPart = remarks[indexOfCurrentSpecInsp].getRemark();
+            printableResult = printableResult.concat("\nCOMMENT: " + remarkOnPart + "\n");
         }
         
         return printableResult;
@@ -62,7 +71,7 @@ public class Result {
      * Returns the number of remarks.
      * @return The number of remarks.
      */
-    int getNumberOfRemarks() {
+    int getRemarksCapacity() {
         return remarks.length;
     }
     
@@ -74,24 +83,35 @@ public class Result {
     @Override
     public boolean equals(Object obj){
         boolean theObjectsAreEqual = true;
+        
         final boolean isResult = obj instanceof Result;
         theObjectsAreEqual &= isResult;
+        
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
-        if(obj == null){
+        final boolean otherObjectIsNull = obj == null;
+        
+        if(otherObjectIsNull){
             theObjectsAreEqual = false;
             return theObjectsAreEqual;
         }
         
         Result otherResult = (Result) obj;
-        theObjectsAreEqual &= (this.indexOfLatestPerformedInspection == otherResult.getIndexOfLatestPerformedInspection());
-        theObjectsAreEqual &= (this.getNumberOfRemarks() == otherResult.getNumberOfRemarks());
+        
+        final boolean equallyProgressed;
+        equallyProgressed = this.indexOfLatestPerformedInspection == otherResult.getIndexOfLatestPerformedInspection();
+        theObjectsAreEqual &= equallyProgressed;
+        
+        final boolean hasTheSameCapacityToHoldRemarks = this.getRemarksCapacity() == otherResult.getRemarksCapacity();
+        theObjectsAreEqual &= hasTheSameCapacityToHoldRemarks;
+        
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
-        for(int i = 0; i < this.getNumberOfRemarks(); i++){
-            theObjectsAreEqual &= this.getRemark(i).equals(otherResult.getRemark(i));
+        for(int i = 0; i < this.getRemarksCapacity(); i++){
+            final boolean haveAddedTheSameRemark = this.getRemark(i).equals(otherResult.getRemark(i));
+            theObjectsAreEqual &= haveAddedTheSameRemark;
         }
         
         return theObjectsAreEqual;
@@ -101,7 +121,7 @@ public class Result {
         return this.indexOfLatestPerformedInspection;
     }
 
-    private Remark getRemark(int index) {
-        return remarks[index];
+    private Remark getRemark(int indexInQuestion) {
+        return remarks[indexInQuestion];
     }
 }

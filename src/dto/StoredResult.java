@@ -5,8 +5,6 @@
  */
 package dto;
 
-import dto.SpecifiedInspection;
-import dto.VehicleDTO;
 import model.Result;
 
 /**
@@ -39,21 +37,31 @@ public class StoredResult {
     @Override
     public boolean equals(Object obj) {
         boolean theObjectsAreEqual = true;
+        
         final boolean isStoredResult = obj instanceof StoredResult;
         theObjectsAreEqual &= isStoredResult;
+        
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
-        if(obj == null){
+        final boolean otherObjectIsNull = obj == null;
+        
+        if(otherObjectIsNull){
             theObjectsAreEqual = false;
             return theObjectsAreEqual;
         }
         
         StoredResult otherStoredResult = (StoredResult) obj;
-        theObjectsAreEqual &= vehicle.equals(otherStoredResult.getVehicle());
-        theObjectsAreEqual &= result.equals(otherStoredResult.getResult());
         
-        if(doneInspections.length != otherStoredResult.getNumberOfDoneInspections()){
+        final boolean hasTheSameVehicle = vehicle.equals(otherStoredResult.getVehicle());
+        theObjectsAreEqual &= hasTheSameVehicle;
+        
+        final boolean hasTheSameResult = result.equals(otherStoredResult.getResult());
+        theObjectsAreEqual &= hasTheSameResult;
+        
+        final boolean doesNotHaveTheSameNumberOfInspections = doneInspections.length != otherStoredResult.getNumberOfDoneInspections();
+        
+        if(doesNotHaveTheSameNumberOfInspections){
             theObjectsAreEqual = false;
             return theObjectsAreEqual;
         }

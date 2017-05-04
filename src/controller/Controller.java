@@ -87,11 +87,12 @@ public class Controller {
      * @return A boolean answer to the statement "There are more inspections to be performed".
      */
     public boolean hasMoreInspections(){
-        if(inspection.hasMoreInspections())
+        final boolean isMoreInspectionsToCome = inspection.hasMoreInspections();
+        if(isMoreInspectionsToCome)
             this.currentState = State.THERE_ARE_MORE_INSPECTIONS_TO_BE_MADE;
         else
             this.currentState = State.THERE_ARE_NO_MORE_INSPECTIONS;
-        return inspection.hasMoreInspections();
+        return isMoreInspectionsToCome;
     }
     
     /**
@@ -110,7 +111,9 @@ public class Controller {
     public void enterRemark(Remark remark){
         inspection.addRemark(remark);
         this.currentState = State.INSPECTOR_ENTERED_A_REMARK;
-        if(! (inspection.hasMoreInspections())){
+        
+        final boolean isNoMoreInspections = ! (inspection.hasMoreInspections());
+        if(isNoMoreInspections){
             inspection.finishedWithInspection(dbm, printer);
             this.currentState = State.THE_INSPECTION_IS_FINISHED;
         }

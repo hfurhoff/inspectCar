@@ -56,7 +56,8 @@ public class Inspection {
      * @return A boolean answer to the statement "There are more inspections to be performed".
      */
     public boolean hasMoreInspections() {
-        return nextSpecifiedInspection < inspectionChecklist.length;
+        final boolean hasMoreInspections = nextSpecifiedInspection < inspectionChecklist.length;
+        return hasMoreInspections;
     }
 
     /**
@@ -64,7 +65,8 @@ public class Inspection {
      * @return The next inspection to be performed by the inspector or null if there are no more inspections to be made.
      */
     public SpecifiedInspection getNextSpecifiedInspection() {
-        if(nextSpecifiedInspection >= inspectionChecklist.length)
+        final boolean doesNotHaveAnyMoreInspections = ! (this.hasMoreInspections());
+        if(doesNotHaveAnyMoreInspections)
             return null;
         
         SpecifiedInspection nextInspectionToBePerformed = inspectionChecklist[nextSpecifiedInspection];

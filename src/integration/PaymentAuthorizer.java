@@ -25,8 +25,11 @@ public class PaymentAuthorizer {
     public boolean authorizePayment(CreditCardDTO creditCard, int cost) {
         boolean approved = false;
         int creditcardBalance = 1000;
-        if(cost < creditcardBalance)
+        
+        final boolean costIsLowerThenBalance = cost < creditcardBalance;
+        if(costIsLowerThenBalance)
             approved = true;
+        
         return approved;
     }
 }

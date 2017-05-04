@@ -16,7 +16,7 @@ public class Date {
     private final int year;
     
     /**
-     * Creates a datebased on a month and an year.
+     * Creates a date based on a month and an year.
      * @param expiryMonth Month of the date
      * @param expiryYear Year of the date
      */
@@ -41,10 +41,12 @@ public class Date {
      */
     @Override
     public String toString(){
-        if(day == 0)
-            return (month + "/" + year);
+        final boolean isAnExpiryDate = day == 0;
+        final String monthAndYear = month + "/" + year;
+        if(isAnExpiryDate)
+            return (monthAndYear);
         else
-            return (day + "/" + month + "/" + year);
+            return (day + "/" + monthAndYear);
     }
     
 }

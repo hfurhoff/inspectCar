@@ -51,17 +51,25 @@ public class SpecifiedInspection {
      */
     public boolean equals(Object obj){
         boolean theObjectsAreEqual = true;
-        theObjectsAreEqual &= (obj instanceof SpecifiedInspection);
+        
+        final boolean isASpecifiedInspection = obj instanceof SpecifiedInspection;
+        theObjectsAreEqual &= isASpecifiedInspection;
+        
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
-        if(obj == null){
+        final boolean otherObjestIsNull = obj == null;
+        
+        if(otherObjestIsNull){
             theObjectsAreEqual = false;
             return theObjectsAreEqual;
         }
         
         SpecifiedInspection otherSpecInsp = (SpecifiedInspection) obj;
-        theObjectsAreEqual &= this.toString().equalsIgnoreCase(otherSpecInsp.toString());
+        
+        final boolean hasTheSameStringRepresentation = this.toString().equalsIgnoreCase(otherSpecInsp.toString());
+        theObjectsAreEqual &= hasTheSameStringRepresentation;
+        
         return theObjectsAreEqual;
     }
 }

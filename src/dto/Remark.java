@@ -43,20 +43,29 @@ public class Remark {
     @Override
     public boolean equals(Object obj){
         boolean theObjectsAreEqual = true;
+        
         final boolean isARemark = obj instanceof Remark;
         theObjectsAreEqual &= isARemark;
+        
         if(theObjectsAreEqual == false){
              return theObjectsAreEqual;
         }
-
-        if(obj == null){
+        
+        final boolean otherObjectIsNull = obj == null;
+        
+        if(otherObjectIsNull){
             theObjectsAreEqual = false;
             return theObjectsAreEqual;
         }
         
         Remark otherRemark = (Remark) obj;
-        theObjectsAreEqual &= remark.equalsIgnoreCase(otherRemark.getRemark());
-        theObjectsAreEqual &= passed == otherRemark.getPassed();
+        
+        final boolean hasTheSameComment = remark.equalsIgnoreCase(otherRemark.getRemark());
+        theObjectsAreEqual &= hasTheSameComment;
+        
+        final boolean hasSameOutcome = passed == otherRemark.getPassed();
+        theObjectsAreEqual &= hasSameOutcome;
+        
         return theObjectsAreEqual;
     }
 }

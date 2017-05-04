@@ -43,7 +43,7 @@ public class View {
         String regNo = "123ABC";
         int cost = contr.calculateCostForInspectionBasedOnVehicle(regNo);
         printer.print(contr.getCurrentState());
-        System.out.println("The cost for inspecting the vehicle with registration number " + regNo + " was " + cost + ".");
+        System.out.println("The cost for inspecting the vehicle with registration number " + regNo + " is " + cost + ".");
         
         int pin = 1234;
         String number = "12345678900987654321";
@@ -57,6 +57,7 @@ public class View {
         
         while(contr.hasMoreInspections()){
             printer.print(contr.getCurrentState());
+            
             SpecifiedInspection inspection = contr.getNextSpecifiedInspection();
             printer.print(contr.getCurrentState());
             System.out.println("The inspection retrieved specified to inspect the following parts: " + inspection.getPartToInspect());
@@ -68,5 +69,4 @@ public class View {
             printer.print(contr.getCurrentState());
         }
     }
-    
 }

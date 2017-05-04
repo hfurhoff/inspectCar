@@ -44,7 +44,7 @@ public class ResultTest {
     @Test
     public void testThatResultIsInitializedCorrectly() {
         int expectedRes = testArray.length;
-        int result = instance.getNumberOfRemarks();
+        int result = instance.getRemarksCapacity();
         assertEquals("Result was not initialized correctly", expectedRes, result);
     }
 

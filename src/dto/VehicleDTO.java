@@ -30,17 +30,25 @@ public class VehicleDTO {
      */
     public boolean equals(VehicleDTO obj){
         boolean theObjectsAreEqual = true;
-        theObjectsAreEqual &= (obj instanceof VehicleDTO);
+        
+        final boolean isAVehicleDTO = obj instanceof VehicleDTO;
+        theObjectsAreEqual &= isAVehicleDTO;
+        
         if(theObjectsAreEqual == false)
             return theObjectsAreEqual;
         
-        if(obj == null){
+        final boolean otherObjectIsNull = obj == null;
+        
+        if(otherObjectIsNull){
             theObjectsAreEqual = false;
             return theObjectsAreEqual;
         }
         
         VehicleDTO otherVehicle = (VehicleDTO) obj;
-        theObjectsAreEqual &= regNumber.equalsIgnoreCase(otherVehicle.getRegNo());
+        
+        final boolean hasTheSameRegNumber = regNumber.equalsIgnoreCase(otherVehicle.getRegNo());
+        theObjectsAreEqual &= hasTheSameRegNumber;
+        
         return theObjectsAreEqual;
     }
 }
