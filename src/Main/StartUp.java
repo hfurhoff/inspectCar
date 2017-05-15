@@ -6,6 +6,7 @@
 package Main;
 
 import controller.Controller;
+import view.InspectionStatsView;
 import view.View;
 
 /**
@@ -27,6 +28,7 @@ public class StartUp {
      */
     public View runStartUp() {
         Controller contr = new Controller();
+        contr.addObserver(InspectionStatsView.getObserver());
         return new View(contr);
     }
     

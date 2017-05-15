@@ -6,6 +6,8 @@ import dto.VehicleDTO;
 import dto.SpecifiedInspection;
 import integration.DatabaseManager;
 import integration.Printer;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class handles all things associated with performing the inspection.
@@ -17,6 +19,7 @@ public class Inspection {
     private final int cost;
     private final Result result;
     private final VehicleDTO vehicle;
+    private final List<InspectionObserver> observers;
     
     /**
      * Creates an instance of the object Inspection based on a vehicle and an inspection checklist.
@@ -29,6 +32,7 @@ public class Inspection {
         this.cost = calculateCost();
         this.result = new Result(this.inspectionChecklist);
         this.vehicle = vehicle;
+        this.observers = new ArrayList<>();
     }
     
     /**
@@ -91,6 +95,17 @@ public class Inspection {
         dbm.setStoredResult(vehicle, result, inspectionChecklist);
         String printableVersionOfTheResult = result.getTextToPrint(inspectionChecklist, vehicle);
         printer.print(printableVersionOfTheResult);
+        notifyObservers();
     }
     
+    public void addAllObservers(List<InspectionObserver> observers) {
+        this.observers.addAll(observers);
+    }
+
+    private void notifyObservers() {
+        boolean passed = this.result.getFinalResult();
+        for(int i = 0; i < observers.size(); i++){
+            observers.get(i).newResult(passed);
+        }
+    }
 }

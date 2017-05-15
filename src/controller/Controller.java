@@ -11,7 +11,10 @@ import integration.Garage;
 import integration.IllegalRegistrationNumberException;
 import integration.PaymentAuthorizer;
 import integration.Printer;
+import java.util.ArrayList;
+import java.util.List;
 import model.Inspection;
+import model.InspectionObserver;
 import model.Payment;
 
 /**
@@ -25,6 +28,7 @@ public class Controller {
     private final Printer printer;
     private Inspection inspection;
     private State currentState;
+    private List<InspectionObserver> observers;
     
     /**
      *Creates an instance of the object Controller.
@@ -36,6 +40,8 @@ public class Controller {
         this.printer = new Printer();
         this.inspection = null;
         this.currentState = State.NO_INSPECTION_HAS_BEGUN;
+        this.observers = new ArrayList<>();
+        
     }
     
     /**
@@ -63,6 +69,7 @@ public class Controller {
         VehicleDTO vehicle = new VehicleDTO(regNo);
         SpecifiedInspection[] inspectionsToBeMade = dbm.getInspectionsForVehicle(vehicle);
         this.inspection = new Inspection(vehicle, inspectionsToBeMade);
+        this.inspection.addAllObservers(observers);
         this.currentState = State.REGISTRATION_NUMBER_HAS_BEEN_ENTERED_AND_COST_HAS_BEEN_RETURNED;
         return this.inspection.getCost();
     }
@@ -126,5 +133,9 @@ public class Controller {
      */
     public State getCurrentState(){
         return currentState;
+    }
+
+    public void addObserver(InspectionObserver observer) {
+        this.observers.add(observer);
     }
 }

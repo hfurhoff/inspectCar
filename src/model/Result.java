@@ -124,4 +124,12 @@ public class Result {
     private Remark getRemark(int indexInQuestion) {
         return remarks[indexInQuestion];
     }
+
+    boolean getFinalResult() {
+        boolean passed = true;
+        for(int i = 0; i < remarks.length; i++){
+            passed &= getRemark(i).getPassed();
+        }
+        return passed;
+    }
 }
