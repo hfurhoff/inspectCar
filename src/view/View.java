@@ -9,7 +9,9 @@ import controller.Controller;
 import dto.CreditCardDTO;
 import dto.Remark;
 import dto.SpecifiedInspection;
-import state.StateHandler;
+import integration.IllegalRegistrationNumberException;
+import tools.ProgramLogger;
+import tools.StateHandler;
 
 /**
  * This class is a placeholder for the entire view.
@@ -18,6 +20,7 @@ import state.StateHandler;
 public class View {
 
     private final Controller contr;
+    private final ProgramLogger logger = ProgramLogger.getLogger();
     
     /**
      * Creates an instance of the class view.
@@ -40,8 +43,24 @@ public class View {
         contr.closeGarageDoor();
         printer.print(contr.getCurrentState());
         
-        String regNo = "123ABC";
-        int cost = contr.calculateCostForInspectionBasedOnVehicle(regNo);
+        int cost = 0;
+        String regNo = "666HEL";
+
+        try{
+            cost = contr.calculateCostForInspectionBasedOnVehicle(regNo);
+        }
+        catch(IllegalRegistrationNumberException exc){
+            handleExc(("\nEXCEPTION: " + regNo + " is not a valid registration number. Please try again.\n"), exc);
+            regNo = "123ABC";
+
+            try{
+                cost = contr.calculateCostForInspectionBasedOnVehicle(regNo);
+            }
+            catch(IllegalRegistrationNumberException exception){
+                handleExc(("\nEXCEPTION: " + regNo + " is not a valid registration number. Please try again.\n"), exception);
+            }
+        }
+        
         printer.print(contr.getCurrentState());
         System.out.println("The cost for inspecting the vehicle with registration number " + regNo + " is " + cost + ".");
         
@@ -68,5 +87,10 @@ public class View {
             contr.enterRemark(remark);
             printer.print(contr.getCurrentState());
         }
+    }
+
+    private void handleExc(String errorMessageForUser,Exception exc) {
+        System.out.println(errorMessageForUser);
+        logger.log(exc);
     }
 }

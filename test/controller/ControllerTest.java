@@ -12,8 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import state.State;
-import static state.StateHandler.stateToString;
+import tools.State;
+import static tools.StateHandler.stateToString;
 
 /**
  * Test of class Controller

@@ -40,11 +40,9 @@ public class DatabaseManager {
     }
 
     private boolean isNotLegalRegNo(VehicleDTO vehicle) {
-        final int lengthOfARegNo = 6;
         final String regNo = vehicle.getRegNo();
-        boolean regNoIsValid = regNo.length() != lengthOfARegNo;
-        regNoIsValid &= !(regNo.equalsIgnoreCase("666HEL"));
-        return regNoIsValid;
+        boolean regNoIsInvalid = regNo.equalsIgnoreCase("666HEL");
+        return regNoIsInvalid;
     }
 
     /**

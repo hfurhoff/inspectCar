@@ -3,11 +3,12 @@ package controller;
 
 import dto.CreditCardDTO;
 import dto.Remark;
-import state.State;
+import tools.State;
 import dto.VehicleDTO;
 import dto.SpecifiedInspection;
 import integration.DatabaseManager;
 import integration.Garage;
+import integration.IllegalRegistrationNumberException;
 import integration.PaymentAuthorizer;
 import integration.Printer;
 import model.Inspection;
@@ -58,7 +59,7 @@ public class Controller {
      * @param regNo the registration number for the vehicle to inspect.
      * @return the cost for inspecting the specified vehicle.
      */
-    public int calculateCostForInspectionBasedOnVehicle(String regNo) {
+    public int calculateCostForInspectionBasedOnVehicle(String regNo) throws IllegalRegistrationNumberException{
         VehicleDTO vehicle = new VehicleDTO(regNo);
         SpecifiedInspection[] inspectionsToBeMade = dbm.getInspectionsForVehicle(vehicle);
         this.inspection = new Inspection(vehicle, inspectionsToBeMade);
