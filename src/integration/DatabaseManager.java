@@ -30,9 +30,21 @@ public class DatabaseManager {
      * Imitation of a databasecall to get an array of specified inspections to be performed.
      * @param vehicle The specified vehicle to inspect.
      * @return An array of specified inspections to be made upon the specified vehicle.
+     * @throws integration.IllegalRegistrationNumberException Will throw an eception if the registration number is of an illegal type.
      */
-    public SpecifiedInspection[] getInspectionsForVehicle(VehicleDTO vehicle){
+    public SpecifiedInspection[] getInspectionsForVehicle(VehicleDTO vehicle) throws IllegalRegistrationNumberException{
+        if(this.isNotLegalRegNo(vehicle)){
+            throw new IllegalRegistrationNumberException(vehicle);
+        }
         return dummyInspectionsToBeMade;
+    }
+
+    private boolean isNotLegalRegNo(VehicleDTO vehicle) {
+        final int lengthOfARegNo = 6;
+        final String regNo = vehicle.getRegNo();
+        boolean regNoIsValid = regNo.length() != lengthOfARegNo;
+        regNoIsValid &= !(regNo.equalsIgnoreCase("666HEL"));
+        return regNoIsValid;
     }
 
     /**
