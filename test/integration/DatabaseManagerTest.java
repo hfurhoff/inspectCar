@@ -26,7 +26,7 @@ public class DatabaseManagerTest {
     
     @Before
     public void setUp() {
-        vehicle = null;
+        vehicle = new VehicleDTO("123ABC");
         instance = new DatabaseManager();
     }
     

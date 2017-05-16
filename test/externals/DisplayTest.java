@@ -63,7 +63,7 @@ public class DisplayTest {
         for(int i = 0; i < maximumDisplayNumber; i++){
             instance.showNextNumber();
         }
-        boolean result = instance.toString().equalsIgnoreCase("Display is showing number 0");
+        boolean result = instance.toString().equalsIgnoreCase("Display is showing number 1");
         assertEquals("The string returned was: " + instance.toString(), expectedResult, result);
     }
 }

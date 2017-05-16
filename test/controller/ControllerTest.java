@@ -64,7 +64,7 @@ public class ControllerTest {
      */
     @Test
     public void testCorrectCostForInspectionBasedOnVehicle() {
-        String regNo = null;
+        String regNo = "123ABC";
         int expResult = 900;
         int result = instance.calculateCostForInspectionBasedOnVehicle(regNo);
         assertEquals(("Cost should have been 900 but was " + 
@@ -76,7 +76,7 @@ public class ControllerTest {
      */
     @Test
     public void testCorrectStateAfterHavingEnteredRegNumber(){
-        String regNo = null;
+        String regNo = "123ABC";
         State expectedRes = State.REGISTRATION_NUMBER_HAS_BEEN_ENTERED_AND_COST_HAS_BEEN_RETURNED;
         instance.calculateCostForInspectionBasedOnVehicle(regNo);
         State result = instance.getCurrentState();

@@ -25,7 +25,7 @@ public class View {
     /**
      * Creates an instance of the class view.
      * @param contr The controller that the view will use to run the program.
-     * @param logger
+     * @param logger The initial logger to be used.
      */
     public View(Controller contr, Logger logger) {
         this.contr = contr;
