@@ -1,9 +1,18 @@
-EXCEPTION    2017-maj-16 11:35:13: 
+EXCEPTION    2017-maj-16 16:06:02: 
 The registraion number 666HEL is invalid.
 
 
-integration.IllegalRegistrationNumberException: The registraion number 666HEL is invalid.
+integration.NonValidRegistrationNumberException: The registraion number 666HEL is invalid.
 	at integration.DatabaseManager.getInspectionsForVehicle(DatabaseManager.java:37)
 	at controller.Controller.calculateCostForInspectionBasedOnVehicle(Controller.java:70)
 	at view.View.runProgram(View.java:52)
 	at Main.InspectCar.main(InspectCar.java:28)
+EXCEPTION    2017-maj-16 16:06:02: 
+The registraion number 666HEL is invalid.
+
+
+integration.NonValidRegistrationNumberException: The registraion number 666HEL is invalid.
+	at integration.DatabaseManager.getInspectionsForVehicle(DatabaseManager.java:37)
+	at controller.Controller.calculateCostForInspectionBasedOnVehicle(Controller.java:70)
+	at view.View.runProgram(View.java:52)
+	at Main.InspectCar.main(InspectCar.java:36)
