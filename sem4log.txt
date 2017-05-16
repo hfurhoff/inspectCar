@@ -1,4 +1,4 @@
-EXCEPTION    2017-maj-16 09:48:15: 
+EXCEPTION    2017-maj-16 11:35:13: 
 The registraion number 666HEL is invalid.
 
 

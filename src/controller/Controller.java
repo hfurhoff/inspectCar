@@ -8,7 +8,7 @@ import dto.VehicleDTO;
 import dto.SpecifiedInspection;
 import integration.DatabaseManager;
 import integration.Garage;
-import integration.IllegalRegistrationNumberException;
+import integration.NonValidRegistrationNumberException;
 import integration.PaymentAuthorizer;
 import integration.Printer;
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class Controller {
      * @param regNo the registration number for the vehicle to inspect.
      * @return the cost for inspecting the specified vehicle.
      */
-    public int calculateCostForInspectionBasedOnVehicle(String regNo) throws IllegalRegistrationNumberException{
+    public int calculateCostForInspectionBasedOnVehicle(String regNo) throws NonValidRegistrationNumberException{
         VehicleDTO vehicle = new VehicleDTO(regNo);
         SpecifiedInspection[] inspectionsToBeMade = dbm.getInspectionsForVehicle(vehicle);
         this.inspection = new Inspection(vehicle, inspectionsToBeMade);

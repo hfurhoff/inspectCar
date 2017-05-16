@@ -9,7 +9,7 @@ import controller.Controller;
 import dto.CreditCardDTO;
 import dto.Remark;
 import dto.SpecifiedInspection;
-import integration.IllegalRegistrationNumberException;
+import integration.NonValidRegistrationNumberException;
 import tools.Logger;
 import tools.StateHandler;
 
@@ -51,14 +51,14 @@ public class View {
         try{
             cost = contr.calculateCostForInspectionBasedOnVehicle(regNo);
         }
-        catch(IllegalRegistrationNumberException exc){
+        catch(NonValidRegistrationNumberException exc){
             handleExc(("\nEXCEPTION: " + regNo + " is not a valid registration number. Please try again.\n"), exc);
             regNo = "123ABC";
 
             try{
                 cost = contr.calculateCostForInspectionBasedOnVehicle(regNo);
             }
-            catch(IllegalRegistrationNumberException exception){
+            catch(NonValidRegistrationNumberException exception){
                 handleExc(("\nEXCEPTION: " + regNo + " is not a valid registration number. Please try again.\n"), exception);
             }
         }
