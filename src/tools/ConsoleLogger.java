@@ -13,14 +13,20 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 /**
- *
+ * A logger that logs directly to the console.
  * @author Coyote
  */
 public class ConsoleLogger implements Logger{
 
+    /**
+     * Creates an instance of the class.
+     */
     public ConsoleLogger() {
     }
 
+    /**
+     * @see Logger.
+     */
     @Override
     public void log(Exception exception) {
         StringBuilder logMessage = new StringBuilder();

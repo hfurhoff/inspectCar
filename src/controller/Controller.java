@@ -135,6 +135,10 @@ public class Controller {
         return currentState;
     }
 
+    /**
+     * Add a observer to the list of observers.
+     * @param observer The observer to be added.
+     */
     public void addObserver(InspectionObserver observer) {
         this.observers.add(observer);
     }

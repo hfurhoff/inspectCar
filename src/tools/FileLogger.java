@@ -13,13 +13,16 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 /**
- *
+ * A logger that logs to a file.
  * @author Coyote
  */
 public class FileLogger implements Logger{
     private static final String LOGNAME = "sem4log.txt";
     private PrintWriter logwriter;
 
+    /**
+     * Sets up a filewriter to write to a specific file.
+     */
     public FileLogger() {
         try {
             logwriter = new PrintWriter(new FileWriter(LOGNAME), true);
@@ -28,6 +31,9 @@ public class FileLogger implements Logger{
         }
     }
 
+    /**
+     * @see Logger. 
+     */
     @Override
     public void log(Exception exception) {
         StringBuilder logMessage = new StringBuilder();

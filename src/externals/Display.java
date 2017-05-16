@@ -9,13 +9,14 @@ public class Display {
     private int numberToDisplay;
     private static final Display THIS = new Display();
     
+    /**
+     * A getter for the singleton class Display.
+     * @return The only instance of the class.
+     */
     public static Display getDisplay(){
         return THIS;
     }
     
-    /**
-     * Creates a dummy display and initiates the number on the display to be zero.
-     */
     private Display(){
         this.numberToDisplay = 0;
     }

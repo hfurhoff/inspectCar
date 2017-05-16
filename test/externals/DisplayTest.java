@@ -23,7 +23,7 @@ public class DisplayTest {
     
     @Before
     public void setUp(){
-        instance = new Display();
+        instance = Display.getDisplay();
     }
     
     @After

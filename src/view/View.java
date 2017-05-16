@@ -96,6 +96,10 @@ public class View {
         logger.log(exc);
     }
     
+    /**
+     * Sets the logger to be used.
+     * @param logger The logger to be used.
+     */
     public void setLogger(Logger logger){
         this.logger = logger;
     }

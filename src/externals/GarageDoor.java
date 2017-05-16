@@ -9,14 +9,14 @@ public class GarageDoor {
     private boolean isOpen;
     private static final GarageDoor THIS = new GarageDoor();
     
-    
+    /**
+     * A getter for the singleton class GargareDoor.
+     * @return The only instance of the class.
+     */
     public static GarageDoor getGarageDoor(){
         return THIS;
     }
     
-    /**
-     * Creates a dummy garagedoor and initiates the door to be closed.
-     */
     private GarageDoor(){
         this.isOpen = false;
     }

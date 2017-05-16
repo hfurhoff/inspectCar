@@ -23,7 +23,7 @@ public class GarageDoorTest {
     
     @Before
     public void setUp() {
-        instance = new GarageDoor();
+        instance = GarageDoor.getGarageDoor();
     }
     
     @After

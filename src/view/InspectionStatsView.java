@@ -8,7 +8,7 @@ package view;
 import model.InspectionObserver;
 
 /**
- *
+ * An observerclass that displays the number of passed and failed inspections.
  * @author Coyote
  */
 public class InspectionStatsView implements InspectionObserver{
@@ -18,6 +18,10 @@ public class InspectionStatsView implements InspectionObserver{
     
     private static final InspectionObserver THIS = new InspectionStatsView();
 
+    /**
+     * A getter for the single instance of the singleton-class.
+     * @return The sole instance of the class.
+     */
     public static InspectionObserver getObserver() {
         return THIS;
     }
@@ -27,6 +31,9 @@ public class InspectionStatsView implements InspectionObserver{
         this.noOfPassed = 0;
     }
     
+    /**
+     * @see InspectionObserver. 
+     */
     @Override
     public void newResult(boolean passed) {
         noOfInspections++;

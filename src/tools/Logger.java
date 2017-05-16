@@ -6,10 +6,14 @@
 package tools;
 
 /**
- *
+ * An interface for logger classes logging whatever that needs to be logged.
  * @author Coyote
  */
 public interface Logger {
     
+    /**
+     * Logs the exception. 
+     * @param exception The exception to be logged.
+     */
     public void log(Exception exception);
 }

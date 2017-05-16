@@ -125,6 +125,10 @@ public class Result {
         return remarks[indexInQuestion];
     }
 
+    /**
+     * A getter for the final result. If any of the specified inspections failed the entire inspection is considered to be failed.
+     * @return The final result.
+     */
     boolean getFinalResult() {
         boolean passed = true;
         for(int i = 0; i < remarks.length; i++){

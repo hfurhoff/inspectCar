@@ -98,6 +98,10 @@ public class Inspection {
         notifyObservers();
     }
     
+    /**
+     * Adds all observers from a list to its own list.
+     * @param observers The list of observers to be added.
+     */
     public void addAllObservers(List<InspectionObserver> observers) {
         this.observers.addAll(observers);
     }
