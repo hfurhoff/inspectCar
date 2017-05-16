@@ -1,9 +1,9 @@
-EXCEPTION    2017-maj-15 15:51:53: 
+EXCEPTION    2017-maj-16 09:48:15: 
 The registraion number 666HEL is invalid.
 
 
 integration.IllegalRegistrationNumberException: The registraion number 666HEL is invalid.
 	at integration.DatabaseManager.getInspectionsForVehicle(DatabaseManager.java:37)
 	at controller.Controller.calculateCostForInspectionBasedOnVehicle(Controller.java:70)
-	at view.View.runProgram(View.java:50)
-	at Main.InspectCar.main(InspectCar.java:22)
+	at view.View.runProgram(View.java:52)
+	at Main.InspectCar.main(InspectCar.java:28)

@@ -16,32 +16,21 @@ import java.time.format.FormatStyle;
  *
  * @author Coyote
  */
-public class ProgramLogger {
-    private static final String LOGNAME = "sem4log.txt";
-    private static final ProgramLogger THIS = new ProgramLogger();
-    private PrintWriter logwriter;
+public class ConsoleLogger implements Logger{
 
-    public static ProgramLogger getLogger() {
-        return THIS;
+    public ConsoleLogger() {
     }
 
-    private ProgramLogger() {
-        try {
-            logwriter = new PrintWriter(new FileWriter(LOGNAME), true);
-        } catch (IOException ex) {
-            System.out.println("Logger was not created.");
-        }
-    }
-
+    @Override
     public void log(Exception exception) {
         StringBuilder logMessage = new StringBuilder();
         logMessage.append("EXCEPTION    ");
         logMessage.append(createTime());
         logMessage.append(": \n");
         logMessage.append(exception.getMessage());
-        logwriter.println(logMessage);
-        logwriter.println("\n");
-        exception.printStackTrace(logwriter);
+        System.out.println(logMessage);
+        exception.printStackTrace(System.out);
+        System.out.println("\n");
     }
 
     private String createTime() {

@@ -2,6 +2,8 @@
 package integration;
 import externals.GarageDoor;
 import externals.Display;
+import static externals.Display.getDisplay;
+import static externals.GarageDoor.getGarageDoor;
 
 /**
  * This class is responsible for making calls to the external systems controlling the garagedoor and the display.
@@ -15,8 +17,8 @@ public class Garage {
      * Sets up a connection to the external systems garagedoor and display. 
      */
     public Garage(){
-        this.door = new GarageDoor();
-        this.disp = new Display();
+        this.door = getGarageDoor();
+        this.disp = getDisplay();
     }
 
     /**

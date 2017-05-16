@@ -10,7 +10,7 @@ import dto.CreditCardDTO;
 import dto.Remark;
 import dto.SpecifiedInspection;
 import integration.IllegalRegistrationNumberException;
-import tools.ProgramLogger;
+import tools.Logger;
 import tools.StateHandler;
 
 /**
@@ -20,14 +20,16 @@ import tools.StateHandler;
 public class View {
 
     private final Controller contr;
-    private final ProgramLogger logger = ProgramLogger.getLogger();
+    private Logger logger;
     
     /**
      * Creates an instance of the class view.
      * @param contr The controller that the view will use to run the program.
+     * @param logger
      */
-    public View(Controller contr) {
+    public View(Controller contr, Logger logger) {
         this.contr = contr;
+        this.logger = logger;
     }
 
     /**
@@ -92,5 +94,9 @@ public class View {
     private void handleExc(String errorMessageForUser,Exception exc) {
         System.out.println(errorMessageForUser);
         logger.log(exc);
+    }
+    
+    public void setLogger(Logger logger){
+        this.logger = logger;
     }
 }

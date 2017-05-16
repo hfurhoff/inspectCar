@@ -6,6 +6,8 @@
 package Main;
 
 import controller.Controller;
+import tools.Logger;
+import tools.FileLogger;
 import view.InspectionStatsView;
 import view.View;
 
@@ -29,7 +31,8 @@ public class StartUp {
     public View runStartUp() {
         Controller contr = new Controller();
         contr.addObserver(InspectionStatsView.getObserver());
-        return new View(contr);
+        Logger firstLogger = new FileLogger();
+        return new View(contr, firstLogger);
     }
     
 }

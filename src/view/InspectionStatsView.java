@@ -36,9 +36,11 @@ public class InspectionStatsView implements InspectionObserver{
         }
         
         System.out.println("------------------------------------------------------------");
-        System.out.println("Total number of vehicles inspected:             " + noOfInspections);
-        System.out.println("Number of vehicles that passed the inspections: " + noOfPassed);
-        System.out.println("Number of vehicles that failed the inspections: " + (noOfInspections - noOfPassed));
+        System.out.println("|                   STATISTICS DISPLAY                     |");
+        System.out.println("|----------------------------------------------------------|");
+        System.out.println("|   Total number of vehicles inspected:             " + noOfInspections + "      |");
+        System.out.println("|   Number of vehicles that passed the inspections: " + noOfPassed + "      |");
+        System.out.println("|   Number of vehicles that failed the inspections: " + (noOfInspections - noOfPassed) + "      |");
         System.out.println("------------------------------------------------------------");        
     }
     

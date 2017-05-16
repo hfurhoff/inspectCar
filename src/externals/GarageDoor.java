@@ -7,11 +7,17 @@ package externals;
  */
 public class GarageDoor {
     private boolean isOpen;
+    private static final GarageDoor THIS = new GarageDoor();
+    
+    
+    public static GarageDoor getGarageDoor(){
+        return THIS;
+    }
     
     /**
      * Creates a dummy garagedoor and initiates the door to be closed.
      */
-    public GarageDoor(){
+    private GarageDoor(){
         this.isOpen = false;
     }
     
